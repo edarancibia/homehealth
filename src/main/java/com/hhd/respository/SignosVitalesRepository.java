@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SignosVitalesRepository extends JpaRepository<SignosVitales, Long> {
+
+    public abstract SignosVitales findSignosVitalesByIdFicha(Long idFicha);
 }

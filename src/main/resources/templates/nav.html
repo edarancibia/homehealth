@@ -1,0 +1,57 @@
+<div th:include="header.html" th:remove="tag"></div>
+
+<div class="wrapper" id="sideNavParent">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img class="img-responsive logo" src="../img/logo-nav.jpg">
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Inicio</p>
+            <li class="active">
+                <a href="/ingreso/" >Ingreso</a>
+                
+            </li>
+            <li>
+                <a href="/atencion-m/">Atenciòn Mèdica</a>
+            </li>
+            <li>
+                <a href="#">Atenciòn de enfermerìa</a>
+            </li>
+            <li>
+                <a href="#">Signos vitales</a>
+            </li>
+            <li>
+                <a href="#">Evoluciòn Mèdica</a>
+            </li>
+            <li>
+                <a href="#">Evoluciòn de Enfermerìa</a>
+            </li>
+
+            <li>
+                <a href="#">Evoluciòn Kinèsica</a>
+            </li>
+            
+        </ul>
+
+        
+    </nav>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
+  

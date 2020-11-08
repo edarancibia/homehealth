@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EdEnfRepository extends JpaRepository<EducacionEnf, Long> {
 
+    public abstract EducacionEnf findEducacionEnfByIdFicha(Long idFicha);
+
 }

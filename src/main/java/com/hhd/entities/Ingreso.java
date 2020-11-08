@@ -18,12 +18,6 @@ public class Ingreso {
     @Column(name = "fecha")
     private Date fecha;
 
-    @Column(name = "id_cesfam")
-    private Long idCesfam;
-
-    @Column(name = "ficha_clinica")
-    private int fichaClinica;
-
     @Column(name = "alergias")
     private String alergias;
 
@@ -63,6 +57,9 @@ public class Ingreso {
     @Column(name = "plan_tto4")
     private String planTto4;
 
+    @Column(name = "rut_usu")
+    private int rutUsu;
+
     public Long getIdIngreso() {
         return idIngreso;
     }
@@ -73,14 +70,6 @@ public class Ingreso {
 
     public Date getFecha() {
         return fecha;
-    }
-
-    public Long getIdCesfam() {
-        return idCesfam;
-    }
-
-    public int getFichaClinica() {
-        return fichaClinica;
     }
 
     public String getAlergias() {
@@ -147,14 +136,6 @@ public class Ingreso {
         this.fecha = fecha;
     }
 
-    public void setIdCesfam(Long idCesfam) {
-        this.idCesfam = idCesfam;
-    }
-
-    public void setFichaClinica(int fichaClinica) {
-        this.fichaClinica = fichaClinica;
-    }
-
     public void setAlergias(String alergias) {
         this.alergias = alergias;
     }
@@ -207,12 +188,18 @@ public class Ingreso {
         this.planTto4 = planTto4;
     }
 
-    public Ingreso(Long idIngreso, Long idFicha, Date fecha, Long idCesfam, int fichaClinica, String alergias, String telefonoUsuario, String telefonoCuidador, String derivadoCresp, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4) {
+    public int getRutUsu() {
+        return rutUsu;
+    }
+
+    public void setRutUsu(int rutUsu) {
+        this.rutUsu = rutUsu;
+    }
+
+    public Ingreso(Long idIngreso, Long idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, String derivadoCresp, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
         this.idIngreso = idIngreso;
         this.idFicha = idFicha;
         this.fecha = fecha;
-        this.idCesfam = idCesfam;
-        this.fichaClinica = fichaClinica;
         this.alergias = alergias;
         this.telefonoUsuario = telefonoUsuario;
         this.telefonoCuidador = telefonoCuidador;
@@ -226,6 +213,7 @@ public class Ingreso {
         this.planTto2 = planTto2;
         this.planTto3 = planTto3;
         this.planTto4 = planTto4;
+        this.rutUsu = rutUsu;
     }
 
     public Ingreso() {

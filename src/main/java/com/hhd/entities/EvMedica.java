@@ -15,7 +15,7 @@ public class EvMedica {
     @Column(name = "fecha")
     private Date fecha;
 
-    @Column(name = "dewcripcion")
+    @Column(name = "descripcion")
     private String descripcion;
 
     @Column(name = "rut_usu")

@@ -12,6 +12,9 @@ public class EducacionEnf {
     @Column(name = "ideducacionef")
     private Long idEducacionEnf;
 
+    @Column(name = "id_ficha")
+    private Long idFicha;
+
     @Column(name = "fecha")
     private Date fecha;
 
@@ -53,8 +56,17 @@ public class EducacionEnf {
         this.rutUsu = rutUsu;
     }
 
-    public EducacionEnf(Long idEducacionEnf, Date fecha, String descripcion, int rutUsu) {
+    public Long getIdFicha() {
+        return idFicha;
+    }
+
+    public void setIdFicha(Long idFicha) {
+        this.idFicha = idFicha;
+    }
+
+    public EducacionEnf(Long idEducacionEnf, Long idFicha, Date fecha, String descripcion, int rutUsu) {
         this.idEducacionEnf = idEducacionEnf;
+        this.idFicha = idFicha;
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.rutUsu = rutUsu;

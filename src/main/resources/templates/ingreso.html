@@ -1,0 +1,200 @@
+<div th:include="header.html" th:remove="tag"></div>
+<div th:include="nav.html" th:remove="tag"></div>
+
+<!--<body>-->
+    <!-- Page Content Holder -->
+    <div id="content" class="content">  
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+    
+                <div class="navbar-header">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn boton-menu">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                        <span>Esconder Menù</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <h4>Ingreso de Hospitalizaciòn Domiciliaria</h4>
+            </div>
+
+            <form action="" class="form-inline">
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 labels-text">Rut:</label>
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control input-xs input-text input-number" id="txtRutIngreso" maxlength="8"  style="width: 200px;">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 labels-text">&nbsp</label>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtDigIngreso" class="form-control input-xs input-text" maxlength="1" style="width: 50px;">
+                    </div>
+                </div>
+                    
+            </form>
+
+            <form class="form-horizontal">
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Nombres:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtNombreIngreso" class="form-control input-text">
+                    </div>
+                </div>
+
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Apellido paterno:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtApatIngreso" class="form-control input-xs input-text">
+                    </div>
+                </div>
+
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Apellido Materno:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtAmatIngreso" class="form-control input-xs input-text">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Alergias:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtAlergiaIngreso" class="form-control input-xs input-text">
+                    </div>
+                </div>
+            
+           
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Direcciòn:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtDireccionIngreso" class="form-control input-xs input-text">
+                    </div>
+                </div>
+                
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Email:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtEmailIngreso" class="form-control input-xs input-text">
+                    </div>
+                </div>
+            </form>
+            <br>
+            <form class="form-inline">
+
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Fecha Nacimiento:</label>
+                    <div class="col-xs-2">
+                      <input type="date" id="txtFancIngreso" class="form-control input-xs input-text input-small">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Previsiòn:</label>
+                    <div class="col-xs-2">
+                        <select  id="cboPrevisionIngreso" class="form-control input-text input-small">
+                            <option value="1">Fonasa</option>
+                            <option value="2">Particular</option>
+                            <option value="3">Isapre</option>
+                        </select>                      
+                    </div>
+                </div>
+            </form>
+            
+            <br>
+
+            <form class="form-inline">
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Fono Usuario:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtFonoUsuIngreso" class="form-control input-xs input-text input-small">
+                    </div>
+                </div>
+
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 control-label labels-text">Fono Cuidador:</label>
+                    <div class="col-xs-2">
+                      <input type="text" id="txtFonoCuidaIngreso" class="form-control input-xs input-text input-small">
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <p>Diagnòsticos</p>
+            <form class="form-inline">
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtDiag1" class="form-control input-text input-small" placeholder="Diagnòstico 1">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtDiag2" class="form-control input-text input-small" placeholder="Diagnòstico 2">
+                    </div>
+                </div>
+            </form>
+            <br>
+            <form class="form-inline">
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtDiag3" class="form-control input-text input-small" placeholder="Diagnòstico 3">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtDiag4" class="form-control input-text input-small" placeholder="Diagnòstico 4">
+                    </div>
+                </div>
+            </form>
+
+            <hr>
+            <p>Plan de Tratamientos</p>
+
+            <form class="form-inline">
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtTrat1" class="form-control input-text input-small" placeholder="Tratamiento 1">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtTrat2" class="form-control input-text input-small" placeholder="Tratamiento 2">
+                    </div>
+                </div>
+            </form>
+            <br>
+            <form class="form-inline">
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtTrat3" class="form-control input-text input-small" placeholder="Tratamiento 3">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <div class="col-xs-2">
+                        <input type="text" id="txtTrat4" class="form-control input-text input-small" placeholder="Tratamiento 4">
+                    </div>
+                </div>
+            </form>
+            
+
+            <div class="container2">
+                <button id="btnDiagIngreso" class="btn btn-small">Diagnòsticos</button>
+                <button id="btnTratIngreso" class="btn btn-small">Plan Tto.</button> 
+                <button id="btnGuardaIngreso" class="btn btn-main">Guardar Ingreso</button> 
+            </div>
+        </div>
+    
+    </div>
+
+</body>
+</html>
