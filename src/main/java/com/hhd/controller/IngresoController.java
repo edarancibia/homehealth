@@ -1,6 +1,7 @@
 package com.hhd.controller;
 
 import com.hhd.entities.Ficha;
+import com.hhd.entities.Ingreso;
 import com.hhd.entities.Paciente;
 import com.hhd.impl.FichaServiceImpl;
 import com.hhd.impl.IngresoServiceImpl;
@@ -26,6 +27,9 @@ public class IngresoController {
     
     @Autowired
     public FichaServiceImpl fichaService;
+    
+    @Autowired
+    public IngresoServiceImpl ingresoService;
 
     @GetMapping("/")
     public ModelAndView index(){
@@ -45,7 +49,7 @@ public class IngresoController {
     }
     
     @PostMapping("/add-paciente")
-    public ResponseEntity<?> addIngreso(@RequestBody Paciente paciente){
+    public ResponseEntity<?> addPaciente(@RequestBody Paciente paciente){
     	Paciente newPac = pacienteService.addPaciente(paciente);
     	return new ResponseEntity<Paciente>(newPac,HttpStatus.OK);
     }
@@ -54,5 +58,11 @@ public class IngresoController {
     public ResponseEntity<?> addFicha(@RequestBody Ficha ficha){
     	Ficha newFicha = fichaService.addFicha(ficha);
     	return new ResponseEntity<Ficha>(newFicha,HttpStatus.OK);
+    }
+    
+    @PostMapping("/add-ingreso")
+    public ResponseEntity<?> addIngreso(@RequestBody Ingreso ingreso){
+    	Ingreso newIngreso = ingresoService.addIngreso(ingreso);
+    	return new ResponseEntity<Ingreso>(newIngreso,HttpStatus.OK);
     }
 }

@@ -27,9 +27,6 @@ public class Ingreso {
     @Column(name = "telefono_cuidador")
     private String telefonoCuidador;
 
-    @Column(name = "derivado_resp")
-    private String derivadoCresp;
-
     @Column(name = "rut_med_deriva")
     private int rutMedDeriva;
 
@@ -82,10 +79,6 @@ public class Ingreso {
 
     public String getTelefonoCuidador() {
         return telefonoCuidador;
-    }
-
-    public String getDerivadoCresp() {
-        return derivadoCresp;
     }
 
     public int getRutMedDeriva() {
@@ -148,10 +141,6 @@ public class Ingreso {
         this.telefonoCuidador = telefonoCuidador;
     }
 
-    public void setDerivadoCresp(String derivadoCresp) {
-        this.derivadoCresp = derivadoCresp;
-    }
-
     public void setRutMedDeriva(int rutMedDeriva) {
         this.rutMedDeriva = rutMedDeriva;
     }
@@ -196,14 +185,13 @@ public class Ingreso {
         this.rutUsu = rutUsu;
     }
 
-    public Ingreso(Long idIngreso, Long idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, String derivadoCresp, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
+    public Ingreso(Long idIngreso, Long idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
         this.idIngreso = idIngreso;
         this.idFicha = idFicha;
         this.fecha = fecha;
         this.alergias = alergias;
         this.telefonoUsuario = telefonoUsuario;
         this.telefonoCuidador = telefonoCuidador;
-        this.derivadoCresp = derivadoCresp;
         this.rutMedDeriva = rutMedDeriva;
         this.diag1 = diag1;
         this.diag2 = diag2;
