@@ -3,6 +3,10 @@ package com.hhd.impl;
 import com.hhd.entities.AtencionMedica;
 import com.hhd.respository.AtMedicaRepository;
 import com.hhd.service.AtMedicaService;
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +25,5 @@ public class AtMedicaServiceImpl implements AtMedicaService {
     public AtencionMedica findAtMedicaByIdFicha(Long idFicha) {
         return repository.findAtMedicaByIdFicha(idFicha);
     }
+
 }

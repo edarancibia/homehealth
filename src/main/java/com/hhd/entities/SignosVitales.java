@@ -38,6 +38,9 @@ public class SignosVitales {
 
     @Column(name = "rut_usu")
     private int rutUsu; //usuario responsable
+    
+    @Column(name = "resp")
+    private String resp;
 
     public Long getIdSignos() {
         return idSignos;
@@ -119,20 +122,30 @@ public class SignosVitales {
         this.idFicha = idFicha;
     }
 
-    public SignosVitales(Long idSignos, Long idAtencionEnf, Long idFicha, Date fecha, String fc, String sat, String pa, String tax, String hgt, int rutUsu) {
-        this.idSignos = idSignos;
-        this.idAtencionEnf = idAtencionEnf;
-        this.idFicha = idFicha;
-        this.fecha = fecha;
-        this.fc = fc;
-        this.sat = sat;
-        this.pa = pa;
-        this.tax = tax;
-        this.hgt = hgt;
-        this.rutUsu = rutUsu;
-    }
+    public String getResp() {
+		return resp;
+	}
 
-    public SignosVitales() {
+	public void setResp(String resp) {
+		this.resp = resp;
+	}
+
+    public SignosVitales(Long idSignos, Long idAtencionEnf, Long idFicha, Date fecha, String fc, String sat, String pa,
+			String tax, String hgt, int rutUsu, String resp) {
+		this.idSignos = idSignos;
+		this.idAtencionEnf = idAtencionEnf;
+		this.idFicha = idFicha;
+		this.fecha = fecha;
+		this.fc = fc;
+		this.sat = sat;
+		this.pa = pa;
+		this.tax = tax;
+		this.hgt = hgt;
+		this.rutUsu = rutUsu;
+		this.resp = resp;
+	}
+
+	public SignosVitales() {
 
     }
 }

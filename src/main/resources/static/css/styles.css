@@ -28,7 +28,32 @@
     margin-bottom: 0px;
 }
 
+.container{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 
+.ancho-bordes{
+  padding-left: 0px;
+  padding-right: 0px;
+
+}
+
+#div-tabla-paciente{
+  background: #6d7fcc;
+}
+.lbl-paciente{
+  color: #ffffff;
+}
+      
+.btn-menu {
+  background: #6d7fcc;
+}
+
+.btn-menu hover {
+  color: #7386D5;
+  background: #fff;
+}
 
 /*------*/
 

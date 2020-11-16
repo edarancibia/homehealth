@@ -1,0 +1,70 @@
+<div th:include="cabecera-paciente.html" th:remove="tag"></div>
+
+<div class="container">
+    <div class="col-md-12 ancho-bordes">
+        <p>Signos Vitales</p>
+        <button type="button" data-target="#modalSignos" data-toggle="modal" id="btnAddSignos" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
+
+        <table class="table table-striped" id="tabla-signos">
+            <thead></thead>
+        </table>
+    </div>
+</div>
+
+</body>
+<div class="modal fade" id="modalSignos" role="dialog">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar Signos Vitales</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label class="col-xs-2 control-label labels-text">FC</label>
+          <input type="text" class="form-control input-text" id="txtFc">
+          <label class="col-xs-2 control-label labels-text">SAT O2</label>
+          <input type="text" class="form-control input-text" id="txtSat">
+          <label class="col-xs-2 control-label labels-text">P/A</label>
+          <input type="text" class="form-control input-text" id="txtPa">
+          <label class="col-xs-2 control-label labels-text">Tº AX.</label>
+          <input type="text" class="form-control input-text" id="txtTax">
+          <label class="col-xs-2 control-label labels-text">HGT.</label>
+          <input type="text" class="form-control input-text" id="txtHgt">
+          <label class="col-xs-2 control-label labels-text">RESP.</label>
+          <input type="text" class="form-control input-text" id="txtResp">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btnSaveSignos" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      $(document).ready(function(){
+        var base_url = 'http://localhost:8080/';
+        var idficha = $('#txtHiddenFicha').val();
+
+        $.ajax({
+            type: 'get',
+            url: base_url + 'signos/list/' + idficha,
+            success: function(data){
+                $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th>");
+				$('#tabla-signos tr').remove();
+                $.each(data, function(i, item){
+					$('<tr>').html(
+                        "<td>"+data[i].fecha+"</td>" +
+                        "<td>"+data[i].fc+"</td>" +
+                        "<td>"+data[i].sat+"</a></td>"+
+                        "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
+                        "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
+                         "</tr>").appendTo('#tabla-signos');
+                });
+            }
+        });
+      });
+  </script>
+</html>

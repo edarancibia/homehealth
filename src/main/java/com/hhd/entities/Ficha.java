@@ -20,6 +20,9 @@ public class Ficha {
 
     @Column(name = "estado")
     private int estado;
+    
+    @Column(name = "rut_med")
+    private int rutMed;
 
     public Long getIdFicha() {
         return idFicha;
@@ -52,15 +55,26 @@ public class Ficha {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+    
 
-    public Ficha(Long idFicha, int rutPac, Date fecha, int estado) {
-        this.idFicha = idFicha;
-        this.rutPac = rutPac;
-        this.fecha = fecha;
-        this.estado = estado;
-    }
+    public int getRutMed() {
+		return rutMed;
+	}
 
-    public Ficha() {
+	public void setRutMed(int rutMed) {
+		this.rutMed = rutMed;
+	}
+
+    public Ficha(Long idFicha, int rutPac, Date fecha, int estado, int rutMed) {
+		super();
+		this.idFicha = idFicha;
+		this.rutPac = rutPac;
+		this.fecha = fecha;
+		this.estado = estado;
+		this.rutMed = rutMed;
+	}
+
+	public Ficha() {
 
     }
 }

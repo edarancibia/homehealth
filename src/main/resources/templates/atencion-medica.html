@@ -1,24 +1,106 @@
-<div th:include="header.html" th:remove="tag"></div>
-<div th:include="nav.html" th:remove="tag"></div>
-
-<div id="content" class="content">  
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn boton-menu">
-                    <i class="glyphicon glyphicon-align-left"></i>
-                    <span>Esconder Menù</span>
-                </button>
-            </div>
-        </div>
-    </nav>
+<div th:include="cabecera-paciente.html" th:remove="tag"></div>
 
     <div class="container">
-        <div class="row">
-            <h4>Atenciòn Mèdica</h4>
+        <div class="col-md-12 ancho-bordes">
+            <br>   
+            <h5>Atenciòn Mèdica</h5>
+            <div class="row">
+
+                <table class="table">
+                    <tr>
+                        <td>Anamnesis
+                            <textarea id="txtAnamnesis" cols="10" rows="4" class="form-control"></textarea>
+                        </td>
+                        <td style="width: 494px;">
+                            Antecedentes Morbidos
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <div class="col-xs-2">
+                                        
+                                        <input type="checkbox" id="dm">
+                                        <label > DM</label>
+                                        
+                                        <input type="checkbox" id="ca">
+                                        <label for="ca"> CA</label>
+                                        
+                                        <input type="checkbox" id="cardio">
+                                        <label for="cardio"> Cardiopatìa</label>
+                                    
+                                    </div>
+                                </div>
+                                &nbsp
+                                <div class="form-group">
+                                    <div class="col-xs-2">
+                                        
+                                        <input type="checkbox" id="hta" value="Hta">
+                                        <label for="hta"> HTA</label>
+                                        
+                                        <input type="checkbox" id="dld" value="Dld">
+                                        <label for="dld"> DLD</label>
+                                        
+                                        <input type="checkbox" id="tbc" value="Tbc">
+                                        <label for="tbc"> TBC</label>
+                                    
+                                    </div>
+                                </div>
+                                &nbsp &nbsp &nbsp &nbsp
+                                <div class="form-group">
+                                    <div class="col-xs-2">
+                                        <input type="checkbox" id="epoc" value="Epoc">
+                                        <label for="epoc"> EPOC</label>
+                                        <input type="checkbox" id="lcfa" value="Lcfa">
+                                        <label for="lcfa"> LCFA</label>
+                                        <input type="checkbox" id="acxfa"  value="Acxfa">
+                                        <label for="vehicle3"> ACXFA</label>
+                                    </div>
+                                </div>
+                                &nbsp &nbsp &nbsp &nbsp
+                                <div class="form-group">
+                                    <div class="col-xs-2">
+                                        <input type="checkbox" id="acv" value="Acv">
+                                        <label for="acv"> ACV</label>
+                                        <input type="checkbox" id="depre" value="Depresion">
+                                        <label for="depre"> Depresiòn</label>
+                                        <input type="checkbox" id="ob"  value="Ob">
+                                        <label for="ob"> OB</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Exàmen Fìsico
+                            <textarea id="txtExamen" cols="10" rows="4" class="form-control"></textarea>
+                        </td>
+                        <td>
+                            Diagnòstico
+                            <textarea id="txtDiagnostico" cols="10" rows="4" class="form-control"></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            Indicaciones
+                            <textarea id="txtIndicaciones" cols="10" rows="4" class="form-control"></textarea>
+                        </td>
+                        <td>
+                            Exàmenes
+                            <textarea id="txtExamenes" cols="10" rows="4" class="form-control"></textarea>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </div>
+
+            <div class="container2">
+                <button id="btnDiagIngreso" class="btn btn-small">Imprimir</button>
+                <button id="btnGuardaAtencionM" class="btn btn-main">Guardar Atenciòn</button> 
+            </div>
         </div>
     </div>
 </div>
 </body>
+
 </html>

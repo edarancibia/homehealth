@@ -37,23 +37,6 @@ public class IngresoController {
         return mv;
     }
     
-    @GetMapping("/verifica-paciente/{rutnum}")
-    public ResponseEntity<?> verificaPaciente(@PathVariable("rutnum") int rutnum){
-    	Paciente pacienteBd = pacienteService.findPacienteByRutNum(rutnum);
-    	if(null != pacienteBd) {
-    		return ResponseEntity.ok(pacienteBd); // si paciente ya existe
-    	}else {
-			return ResponseEntity.notFound().build();
-		}
-    	
-    }
-    
-    @PostMapping("/add-paciente")
-    public ResponseEntity<?> addPaciente(@RequestBody Paciente paciente){
-    	Paciente newPac = pacienteService.addPaciente(paciente);
-    	return new ResponseEntity<Paciente>(newPac,HttpStatus.OK);
-    }
-    
     @PostMapping("/add-ficha")
     public ResponseEntity<?> addFicha(@RequestBody Ficha ficha){
     	Ficha newFicha = fichaService.addFicha(ficha);
@@ -65,4 +48,5 @@ public class IngresoController {
     	Ingreso newIngreso = ingresoService.addIngreso(ingreso);
     	return new ResponseEntity<Ingreso>(newIngreso,HttpStatus.OK);
     }
+
 }

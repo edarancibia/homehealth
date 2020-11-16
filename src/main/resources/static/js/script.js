@@ -75,7 +75,7 @@ $(document).ready(function(){
                 //verifica si el paciente existe
                 $.ajax({
                     type: 'get',
-                    url: base_url + 'ingreso/verifica-paciente/'+rutnum,
+                    url: base_url + 'paciente/verifica-paciente/'+rutnum,
                     data: {rutnum: rutnum},
                     success: function(data){
                         if(data != null){
@@ -156,7 +156,7 @@ $(document).ready(function(){
     
                         $.ajax({
                             type: 'post',
-                            url: base_url + 'ingreso/add-paciente',
+                            url: base_url + 'paciente/add-paciente',
                             contentType: 'application/json; charset=utf-8',
                             dataType: 'json',
                             data: JSON.stringify(form_pac),
@@ -239,5 +239,155 @@ $(document).ready(function(){
                 });
             }
         } 
+    });
+
+    // - - - - -Atencion medica - - - - - - - -
+    $('#btnGuardaAtencionM').on('click', function(e){
+        e.stopImmediatePropagation();
+
+        var r = confirm("¿Confirma que desea guardar la atenciòn?");
+        if (r == true) {
+            if($('#txtAnamnesis').val() == '' || $('#txtExamen').val() == '' || $('#txtDiagnostico').val() == ''){
+                alert('Debe completar los datos del formulario!')
+            }else{
+                var dm,ca,cardio,hta,dld,tbc,epoc,lcfa,acxfa,acv,depre,ob;
+
+                if ($('#dm').is(':checked')) {
+                    dm = 1;
+                }
+                if ($('#ca').is(':checked')) {
+                    ca = 1;
+                }
+                if ($('#cardio').is(':checked')) {
+                    cardio = 1;
+                }
+                if ($('#hta').is(':checked')) {
+                    hta = 1;
+                }
+                if ($('#dld').is(':checked')) {
+                    dld = 1;
+                }
+                if ($('#tbc').is(':checked')) {
+                    tbc = 1;
+                }
+                if ($('#epoc').is(':checked')) {
+                    epoc = 1;
+                }
+                if ($('#lcfa').is(':checked')) {
+                    lcfa = 1;
+                }
+                if ($('#acxfa').is(':checked')) {
+                    acxfa = 1;
+                }
+                if ($('#acv').is(':checked')) {
+                    acv = 1;
+                }
+                if ($('#depre').is(':checked')) {
+                    depre = 1;
+                }if ($('#ob').is(':checked')) {
+                    ob = 1;
+                }
+    
+                var form_atencion = {
+                    'id_ficha'       : $('#txtHiddenFicha').val(),
+                    'fecha'         : new Date(),
+                    'anamnesis'     : $('#txtAnamnesis').val(),
+                    'examenFisico'  : $('#txtExamen').val(),
+                    'diagPresuntivo': $('#txtDiagnostico').val(),
+                    'indDomicilio'  : $('#txtIndicaciones').val(),
+                    'rutUsu'        : 1, //cambiar
+                    'estado'        : 1,
+                    'exmenes'      : $('#txtExamenes').val(),
+                    'dm'            : dm,
+                    'ca'            : ca,
+                    'cardio'        : cardio,
+                    'hta'           : hta,
+                    'dld'           : dld,
+                    'tbc'           : tbc,
+                    'lcfa'          : lcfa,
+                    'acxfa'         : acxfa,
+                    'acv'           : acv,
+                    'depre'         : depre,
+                    'ob'            : ob
+                }
+    
+                $.ajax({
+                    type: 'post',
+                    url: base_url + 'atencion-m/save',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(form_atencion),
+                    success: function(){
+                        console.log('atencion guardada exitosamente');
+                        $('#txtHiddenFicha').attr('readonly', true);
+                        $('#txtAnamnesis').attr('readonly', true);
+                        $('#txtExamen').attr('readonly', true);
+                        $('#txtDiagnostico').attr('readonly', true);
+                        $('#txtIndicaciones').attr('readonly', true);
+                        $('#txtExamenes').attr('readonly', true);
+                        $('#btnGuardaAtencionM').attr('readonly', true);
+                    },
+                    error: function(){
+                        console.log('error al guardar atencion');
+                    }
+                });
+            }
+        }
+    });
+
+    // - - - - - SIGNOS VITALES - - - - - - - - -
+    $('#btnSaveSignos').on('click', function(e){
+        e.stopImmediatePropagation();
+
+        var r = confirm("¿Confirma que desea guardar los signos vitales?");
+        if (r == true) {
+            var form_signos = {
+                'idFicha'   : $('#txtHiddenFicha').val(),
+                'fecha'     : new Date(),
+                'fc'        : $('#txtFc').val(),
+                'sat'       : $('#txtSat').val(),
+                'pa'        : $('#txtPa').val(),
+                'tax'       : $('#txtTax').val(),
+                'hgt'       : $('#txtHgt').val(),
+                'resp'      : $('#txtResp').val(),
+                'rutUsu'    : 1
+            }
+
+            $.ajax({
+                type: 'post',
+                url: base_url + 'signos/add',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(form_signos),
+                success: function(){
+                    $('#modalSignos').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+
+                    $.ajax({
+                        type: 'get',
+                        url: base_url + 'signos/list/' + $('#txtHiddenFicha').val(),
+                        success: function(data){
+                            $('#tabla-signos thead').remove();
+                            $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th>");
+                            $('#tabla-signos tr').remove();
+                            $.each(data, function(i, item){
+                                $('<tr>').html(
+                                    "<td>"+data[i].fecha+"</td>" +
+                                    "<td>"+data[i].fc+"</td>" +
+                                    "<td>"+data[i].sat+"</a></td>"+
+                                    "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
+                                    "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
+                                     "</tr>").appendTo('#tabla-signos');
+                            });
+                        }
+                    });
+                },
+                error: function(){
+                    console.log('error al guardar signos');
+                }
+            });
+        }
+        
     });
 });

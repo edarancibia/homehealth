@@ -1,0 +1,38 @@
+<div th:include="header.html" th:remove="tag"></div>
+<div th:include="nav.html" th:remove="tag"></div>
+
+    <div class="container">
+        <div id="div-tabla-paciente" class="col-md-12 ancho-bordes">
+            <table>
+                <input type="hidden" id="txtHiddenFicha" th:value="${idficha}">
+                <td class="lbl-paciente">Rut:</td>
+                <td><input type="text" id="txtRut"  class="form-control input-small input-text" disabled></td>
+                <td class="lbl-paciente">Nombre:</td>
+                <td><input type="text" id="txtPaciente" class="form-control input-small input-text" disabled></td>
+                <td class="lbl-paciente">Edad:</td>
+                <td><input type="text" id="txtEdad" class="form-control input-small input-text" disabled></td>
+            </table>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+          
+                var base_url = 'http://localhost:8080/';
+                var idficha = $('#txtHiddenFicha').val();
+          
+                $.ajax({
+                    type: 'get',
+                    url: base_url + 'paciente/obtiene-paciente/'+idficha,
+                    success: function(data){
+                        console.log(data);
+                        $('#txtRut').val(data[0].rut_num);
+                        $('#txtPaciente').val(data[0].nombre);
+                        $('#txtEdad').val(data[0].edad +' '+ 'años');
+                    },
+                    error: function(){
+                      console.log('error al traer datos del paciente');
+                    }
+                });
+            });
+          </script>
+    

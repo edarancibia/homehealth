@@ -1,0 +1,41 @@
+<div th:include="header.html" th:remove="tag"></div>
+<div th:include="nav.html" th:remove="tag"></div>
+
+<div class="container">
+    <div class="container">
+        <div class="card">
+          <div class="card-header">Pacientes</div>
+          <div class="card-body">
+              <table id="tabla-pacientes" class="table table-hover">
+                  <thead></thead>
+              </table>
+          </div> 
+        </div>
+      </div>
+</div>
+
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+
+        var base_url = 'http://localhost:8080/';
+        $.ajax({
+            type: 'get',
+            url: base_url + 'paciente/list',
+            success: function(data){
+                $("#tabla-pacientes thead").append("<th>Ficha</th><th>Nombre</th><th>Edad</th><th>Rut</th><th>Fecha</th>");
+				$('#tabla-pacientes tr').remove();
+                $.each(data, function(i, item){
+					$('<tr>').html(
+                        "<td>"+data[i].idficha+"</td>" +
+                        "<td><a target='blank' href="+base_url+'menu/'+data[i].idficha+">"+data[i].nombre+"</a></td>"+
+                        "<td>"+data[i].edad+"</td>"+"<td>"+data[i].rut_num+"</td>"+
+                        "<td>"+data[i].fecha+"</td>"+
+                         "</tr>").appendTo('#tabla-pacientes');
+                    });
+            }
+        });
+    });
+</script>
+</html>
