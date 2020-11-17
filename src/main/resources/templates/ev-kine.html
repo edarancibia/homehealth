@@ -2,17 +2,17 @@
 
 <div class="container">
     <div class="col-md-12 ancho-bordes">
-        <p>Evoluciòn Mèdica</p>
-        <button type="button" data-target="#modalEvMedica" data-toggle="modal" id="btnAddEvMedica" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <p>Evoluciòn Kinèsica</p>
+        <button type="button" data-target="#modalEvKine" data-toggle="modal" id="btnAddEvKine" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
 
-        <table class="table table-striped tabla-ev" id="tabla-evMedica">
+        <table class="table table-striped tabla-ev" id="tabla-evKine">
             <thead></thead>
         </table>
     </div>
 </div>
 
 </body>
-<div class="modal fade" id="modalEvMedica" role="dialog">
+<div class="modal fade" id="modalEvKine" role="dialog">
     <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
@@ -23,13 +23,10 @@
         </div>
         <div class="modal-body">
           <label class="col-xs-2 control-label labels-text">Evoluciòn</label>
-          <textarea id="txtEvolucionM" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
-
-          <label class="col-xs-2 control-label labels-text">Indicaciones</label>
-          <textarea id="txtIndicaciones" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
+          <textarea id="txtEvolucionK" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btnSaveEvMedica" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <button type="button" id="btnSaveEvKine" class="btn btn-primary" data-dismiss="modal">Guardar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
@@ -43,17 +40,16 @@
 
         $.ajax({
             type: 'get',
-            url: base_url + 'evolucion-m/list/' + idficha,
+            url: base_url + 'evolucion-k/list/' + idficha,
             success: function(data){
-                $("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Evoluciòn</th><th>Indicaciones</th>");
-				        $('#tabla-evMedica tr').remove();
+                $("#tabla-evKine thead").append("<th>Ficha</th><th>Fecha</th><th>Evoluciòn</th>");
+				        $('#tabla-evEnKine tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
                         "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
-                        "<td>"+data[i].indicaciones+"</td>"+
-                    "</tr>").appendTo('#tabla-evMedica');
+                    "</tr>").appendTo('#tabla-evKine');
                 });
             }
         });

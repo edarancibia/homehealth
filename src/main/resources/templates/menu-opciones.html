@@ -6,26 +6,26 @@
 <div class="container">
     <div class="form-row">
   <div class="col">
-    <a th:href="@{'/atencion-m/'+ ${idficha}}" class="btn btn-info btn-block btn-menu">Atenciòn Mèdica</a>
+    <a th:href="@{'/atencion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" style="color: white;">Atenciòn Mèdica</a>
   </div>
   <div class="col">
-    <button class="btn btn-info btn-block btn-menu" type="button" >Atenciòn de Enfermerìa</button>
+    <button class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Atenciòn de Enfermerìa</button>
   </div>
     </div>
     <div class="form-row mt-2">
   <div class="col">
-    <a th:href="@{'/signos/'+ ${idficha}}" class="btn btn-info btn-block btn-menu" type="button" >Signos Vitales</a>
+    <a th:href="@{'/signos/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Signos Vitales</a>
   </div>
   <div class="col">
-    <a th:href="@{'/evolucion-m/'+ ${idficha}}" class="btn btn-info btn-block btn-menu" type="button" >Evoluciòn Mèdica</a>
+    <a th:href="@{'/evolucion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Evoluciòn Mèdica</a>
   </div>
     </div>
     <div class="form-row mt-2">
         <div class="col">
-          <button class="btn btn-info btn-block btn-menu" type="button" >Eveluciòn de Enfermerìa</button>
+          <a th:href="@{'/evolucion-e/'+ ${idficha}}" type="button" class="btn btn-light btn-block btn-menu" style="color: white;">Evoluciòn de Enfermerìa</a>
         </div>
         <div class="col">
-          <button class="btn btn-info btn-block btn-menu" type="button" >Evoluciòn Kinèsica</button>
+          <a th:href="@{'/evolucion-k/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Evoluciòn Kinèsica</a>
         </div>
     </div>
   </div>

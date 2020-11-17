@@ -55,6 +55,10 @@
   background: #fff;
 }
 
+.tabla-ev {
+  font-size: 14px;
+}
+
 /*------*/
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&subset=latin,latin-ext);

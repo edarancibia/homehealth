@@ -23,6 +23,9 @@ public class EvMedica {
     
     @Column(name = "id_ficha")
     private int idFicha;
+    
+    @Column(name = "indicaciones")
+    private String indicaciones;
 
     public Long getIdEvMedica() {
         return idEvMedica;
@@ -64,13 +67,22 @@ public class EvMedica {
 		this.idFicha = idFicha;
 	}
 
-    public EvMedica(Long idEvMedica, Date fecha, String descripcion, int rutUsu, int idFicha) {
+    public String getIndicaciones() {
+		return indicaciones;
+	}
+
+	public void setIndicaciones(String indicaciones) {
+		this.indicaciones = indicaciones;
+	}
+
+	public EvMedica(Long idEvMedica, Date fecha, String descripcion, int rutUsu, int idFicha, String indicaciones) {
 		super();
 		this.idEvMedica = idEvMedica;
 		this.fecha = fecha;
 		this.descripcion = descripcion;
 		this.rutUsu = rutUsu;
 		this.idFicha = idFicha;
+		this.indicaciones = indicaciones;
 	}
 
 	public EvMedica() {

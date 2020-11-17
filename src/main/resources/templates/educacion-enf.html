@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="col-md-12 ancho-bordes">
-        <p>Evoluciòn Mèdica</p>
+        <p>Educaciòn de Enfermerìa</p>
         <button type="button" data-target="#modalEvMedica" data-toggle="modal" id="btnAddEvMedica" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
 
         <table class="table table-striped tabla-ev" id="tabla-evMedica">
@@ -36,27 +36,4 @@
     </div>
   </div>
 
-  <script>
-      $(document).ready(function(){
-        var base_url = 'http://localhost:8080/';
-        var idficha = $('#txtHiddenFicha').val();
-
-        $.ajax({
-            type: 'get',
-            url: base_url + 'evolucion-m/list/' + idficha,
-            success: function(data){
-                $("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Evoluciòn</th><th>Indicaciones</th>");
-				        $('#tabla-evMedica tr').remove();
-                $.each(data, function(i, item){
-					        $('<tr>').html(
-                        "<td>"+data[i].id_ficha+"</a></td>"+
-                        "<td>"+data[i].fecha+"</td>" +
-                        "<td>"+data[i].descripcion+"</td>" +
-                        "<td>"+data[i].indicaciones+"</td>"+
-                    "</tr>").appendTo('#tabla-evMedica');
-                });
-            }
-        });
-      });
-  </script>
 </html>

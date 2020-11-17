@@ -368,8 +368,8 @@ $(document).ready(function(){
                         type: 'get',
                         url: base_url + 'signos/list/' + $('#txtHiddenFicha').val(),
                         success: function(data){
-                            $('#tabla-signos thead').remove();
-                            $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th>");
+                            //$('#tabla-signos thead').remove();
+                            //$("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th>");
                             $('#tabla-signos tr').remove();
                             $.each(data, function(i, item){
                                 $('<tr>').html(
@@ -390,4 +390,151 @@ $(document).ready(function(){
         }
         
     });
+
+    //- - - - EVOLUCION MEDICA - - - - - - - - --  
+    $('#btnSaveEvMedica').on('click', function(e){
+        e.stopImmediatePropagation();
+
+        var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+        if (r == true) {
+            var form_evolucion_m = {
+                'idFicha'     : $('#txtHiddenFicha').val(),
+                'fecha'       : new Date(),
+                'descripcion' : $('#txtEvolucionM').val(),
+                'indicaciones' : $('#txtIndicaciones').val(),
+                'rutUsu'      : 1
+            }
+
+            $.ajax({
+                type: 'post',
+                url: base_url + 'evolucion-m/add',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(form_evolucion_m),
+                success: function(){
+                    $('#modalEvMedica').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    $('#txtEvolucionM').val('');
+                    $('#txtIndicaciones').val('');
+
+                    $.ajax({
+                        type: 'get',
+                        url: base_url + 'evolucion-m/list/' + $('#txtHiddenFicha').val(),
+                        success: function(data){
+                            //$('#tabla-evMedica thead').remove();
+                            //$("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Comentarios</th>");
+                            $('#tabla-evMedica tr').remove();
+                            $.each(data, function(i, item){
+                                $('<tr>').html(
+                                    "<td>"+data[i].id_ficha+"</td>" +
+                                    "<td>"+data[i].fecha+"</td>" +
+                                    "<td>"+data[i].descripcion+"</td>" +
+                                    "<td>"+data[i].indicaciones+"</td>" +
+                                     "</tr>").appendTo('#tabla-evMedica');
+                            });
+                        }
+                    });
+                },
+                error: function(){
+                    console.log('error al guardar evolucion');
+                }
+            });
+        }
+        
+    });
+
+        //- - - - EVOLUCION ENFERMERIA - - - - - - - - --  
+        $('#btnSaveEvEnfermeria').on('click', function(e){
+            e.stopImmediatePropagation();
+    
+            var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+            if (r == true) {
+                var form_evolucion_e = {
+                    'idFicha'    : $('#txtHiddenFicha').val(),
+                    'fecha'      : new Date(),
+                    'descripcion': $('#txtEvolucionE').val(),
+                    'rutUsu'     : 1
+                }
+    
+                $.ajax({
+                    type: 'post',
+                    url: base_url + 'evolucion-e/add',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(form_evolucion_e),
+                    success: function(){
+                        $('#modalEvEnfermeria').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        $('#txtEvolucionE').val('');
+                        $.ajax({
+                            type: 'get',
+                            url: base_url + 'evolucion-e/list/' + $('#txtHiddenFicha').val(),
+                            success: function(data){
+                                $('#tabla-evEnfermeria tr').remove();
+                                $.each(data, function(i, item){
+                                    $('<tr>').html(
+                                        "<td>"+data[i].id_ficha+"</td>" +
+                                        "<td>"+data[i].fecha+"</td>" +
+                                        "<td>"+data[i].descripcion+"</td>" +
+                                         "</tr>").appendTo('#tabla-evEnfermeria');
+                                });
+                            }
+                        });
+                    },
+                    error: function(){
+                        console.log('error al guardar evolucion');
+                    }
+                });
+            }
+            
+        });
+
+        //- - - - EVOLUCION KINESICA - - - - - - - - --  
+        $('#btnSaveEvKine').on('click', function(e){
+            e.stopImmediatePropagation();
+    
+            var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+            if (r == true) {
+                var form_evolucion_k = {
+                    'idFicha'    : $('#txtHiddenFicha').val(),
+                    'fecha'      : new Date(),
+                    'descripcion': $('#txtEvolucionK').val(),
+                    'rutUsu'     : 1
+                }
+    
+                $.ajax({
+                    type: 'post',
+                    url: base_url + 'evolucion-k/add',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(form_evolucion_k),
+                    success: function(){
+                        $('#modalEvKine').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        $('#txtEvolucionK').val('');
+                        $.ajax({
+                            type: 'get',
+                            url: base_url + 'evolucion-k/list/' + $('#txtHiddenFicha').val(),
+                            success: function(data){
+                                $('#tabla-evKine tr').remove();
+                                $.each(data, function(i, item){
+                                    $('<tr>').html(
+                                        "<td>"+data[i].id_ficha+"</td>" +
+                                        "<td>"+data[i].fecha+"</td>" +
+                                        "<td>"+data[i].descripcion+"</td>" +
+                                         "</tr>").appendTo('#tabla-evKine');
+                                });
+                            }
+                        });
+                    },
+                    error: function(){
+                        console.log('error al guardar evolucion');
+                    }
+                });
+            }
+            
+        });
 });

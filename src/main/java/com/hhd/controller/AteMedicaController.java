@@ -23,10 +23,10 @@ public class AteMedicaController {
 	@Autowired
 	public AtMedicaServiceImpl atMedService;
 	
-	@GetMapping("/{rutnum}")
-    public ModelAndView index(@PathVariable int rutnum, Model model){
+	@GetMapping("/{idficha}")
+    public ModelAndView index(@PathVariable int idficha, Model model){
         ModelAndView mv = new ModelAndView("atencion-medica");
-        model.addAttribute("rutnum",rutnum);
+        model.addAttribute("idficha",idficha);
         return mv;
     }
 	
