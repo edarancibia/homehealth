@@ -21,9 +21,9 @@ public class AtMedicaServiceImpl implements AtMedicaService {
         return repository.save(atMedica);
     }
 
-    @Override
-    public AtencionMedica findAtMedicaByIdFicha(Long idFicha) {
-        return repository.findAtMedicaByIdFicha(idFicha);
-    }
+	@Override
+	public AtencionMedica findAtencionMedicaByIdFicha(int idFicha) {
+		return repository.findAtencionMedicaByIdFicha(idFicha);
+	}
 
 }

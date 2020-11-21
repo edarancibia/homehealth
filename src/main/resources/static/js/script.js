@@ -537,4 +537,191 @@ $(document).ready(function(){
             }
             
         });
+
+            //- - - - EDUCACION DE ENFERMERIA - - - - - - - - --  
+            $('#btnSaveEducacion').on('click', function(e){
+                e.stopImmediatePropagation();
+        
+                var r = confirm("¿Confirma que desea guardar la Educaciòn?");
+                if (r == true) {
+                    var form_educacion = {
+                        'idFicha'    : $('#txtHiddenFicha').val(),
+                        'fecha'      : new Date(),
+                        'descripcion': $('#txtEducacion').val(),
+                        'rutUsu'     : 1
+                    }
+        
+                    $.ajax({
+                        type: 'post',
+                        url: base_url + 'educacion-enf/add',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify(form_educacion),
+                        success: function(){
+                            $('#modalEducacion').modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                            $('#txtEducacion').val('');
+                            $.ajax({
+                                type: 'get',
+                                url: base_url + 'educacion-enf/list/' + $('#txtHiddenFicha').val(),
+                                success: function(data){
+                                    $('#tabla-educacion tr').remove();
+                                    $.each(data, function(i, item){
+                                        $('<tr>').html(
+                                            "<td>"+data[i].id_ficha+"</td>" +
+                                            "<td>"+data[i].fecha+"</td>" +
+                                            "<td>"+data[i].descripcion+"</td>" +
+                                             "</tr>").appendTo('#tabla-educacion');
+                                    });
+                                }
+                            });
+                        },
+                        error: function(){
+                            console.log('error al guardar educacion');
+                        }
+                    });
+                }
+                
+            });
+    
+            //- - - - EVOLUCION OTROS PROFESIONALES - - - - - - - - --  
+            $('#btnSaveEvOtros').on('click', function(e){
+                e.stopImmediatePropagation();
+        
+                var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+                if (r == true) {
+                    var form_evolucion_o = {
+                        'idFicha'    : $('#txtHiddenFicha').val(),
+                        'fecha'      : new Date(),
+                        'descripcion': $('#txtEvolucionO').val(),
+                        'rutUsu'     : 1
+                    }
+        
+                    $.ajax({
+                        type: 'post',
+                        url: base_url + 'evolucion-o/add',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify(form_evolucion_o),
+                        success: function(){
+                            $('#modalEvOtros').modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                            $('#txtEvolucionO').val('');
+                            $.ajax({
+                                type: 'get',
+                                url: base_url + 'evolucion-o/list/' + $('#txtHiddenFicha').val(),
+                                success: function(data){
+                                    $('#tabla-evOtros tr').remove();
+                                    $.each(data, function(i, item){
+                                        $('<tr>').html(
+                                            "<td>"+data[i].id_ficha+"</td>" +
+                                            "<td>"+data[i].fecha+"</td>" +
+                                            "<td>"+data[i].descripcion+"</td>" +
+                                             "</tr>").appendTo('#tabla-evOtros');
+                                    });
+                                }
+                            });
+                        },
+                        error: function(){
+                            console.log('error al guardar evolucion');
+                        }
+                    });
+                }
+                
+            });
+    
+        //- - - - EVOLUCION OTROS PROFESIONALES - - - - - - - - --  
+            $('#btnSaveEvOtros').on('click', function(e){
+                e.stopImmediatePropagation();
+        
+                var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+                if (r == true) {
+                    var form_evolucion_o = {
+                        'idFicha'    : $('#txtHiddenFicha').val(),
+                        'fecha'      : new Date(),
+                        'descripcion': $('#txtEvolucionO').val(),
+                        'rutUsu'     : 1
+                    }
+        
+                    $.ajax({
+                        type: 'post',
+                        url: base_url + 'evolucion-o/add',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify(form_evolucion_o),
+                        success: function(){
+                            $('#modalEvOtros').modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                            $('#txtEvolucionO').val('');
+                            $.ajax({
+                                type: 'get',
+                                url: base_url + 'evolucion-o/list/' + $('#txtHiddenFicha').val(),
+                                success: function(data){
+                                    $('#tabla-evOtros tr').remove();
+                                    $.each(data, function(i, item){
+                                        $('<tr>').html(
+                                            "<td>"+data[i].id_ficha+"</td>" +
+                                            "<td>"+data[i].fecha+"</td>" +
+                                            "<td>"+data[i].descripcion+"</td>" +
+                                             "</tr>").appendTo('#tabla-evOtros');
+                                    });
+                                }
+                            });
+                        },
+                        error: function(){
+                            console.log('error al guardar evolucion');
+                        }
+                    });
+                }
+                
+            });
+
+            //- - - - EVOLUCION OTROS PROFESIONALES - - - - - - - - --  
+            $('#btnSaveProce').on('click', function(e){
+                e.stopImmediatePropagation();
+            
+                var r = confirm("¿Confirma que desea guardar el procedimiento?");
+                if (r == true) {
+                    var form_evolucion_o = {
+                        'idFicha'    : $('#txtHiddenFicha').val(),
+                        'fecha'      : new Date(),
+                        'descripcion': $('#txtProce').val(),
+                        'rutUsu'     : 1
+                    }
+            
+                    $.ajax({
+                        type: 'post',
+                        url: base_url + 'proc-enf/add',
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        data: JSON.stringify(form_evolucion_o),
+                        success: function(){
+                            $('#modalProce').modal('hide');
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+                            $('#txtProce').val('');
+                            $.ajax({
+                                type: 'get',
+                                url: base_url + 'proc-enf/list/' + $('#txtHiddenFicha').val(),
+                                success: function(data){
+                                    $('#tabla-proce tr').remove();
+                                    $.each(data, function(i, item){
+                                        $('<tr>').html(
+                                            "<td>"+data[i].id_ficha+"</td>" +
+                                            "<td>"+data[i].fecha+"</td>" +
+                                            "<td>"+data[i].descripcion+"</td>" +
+                                            "</tr>").appendTo('#tabla-proce');
+                                    });
+                                }
+                            });
+                        },
+                        error: function(){
+                            console.log('error al guardar evolucion');
+                        }
+                    });
+                }    
+            });
 });

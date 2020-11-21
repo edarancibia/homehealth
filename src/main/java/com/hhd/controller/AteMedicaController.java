@@ -35,4 +35,14 @@ public class AteMedicaController {
 		AtencionMedica newAtencion = atMedService.AddAtencion(atencion);
 		return new ResponseEntity<AtencionMedica>(newAtencion,HttpStatus.OK);
 	}
+	
+	@GetMapping("/get-atencion/{idficha}")
+	public ResponseEntity<?> getAtencionByFicha(@PathVariable int idficha){
+		AtencionMedica atencion = atMedService.findAtencionMedicaByIdFicha(idficha);
+		if(atencion == null) {
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<AtencionMedica>(atencion,HttpStatus.OK);
+		}
+	}
 }

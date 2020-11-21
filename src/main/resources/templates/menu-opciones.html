@@ -6,27 +6,43 @@
 <div class="container">
     <div class="form-row">
   <div class="col">
-    <a th:href="@{'/atencion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" style="color: white;">Atenciòn Mèdica</a>
+    <a th:href="@{'/atencion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" style="color: white;"><i class="fas fa-user-md"></i> Atenciòn Mèdica</a>
   </div>
   <div class="col">
-    <button class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Atenciòn de Enfermerìa</button>
+    <a th:href="@{'/educacion-enf/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" style="color: white;"><i class="fas fa-user-md"></i> Educaciòn de Enfermerìa</a>
   </div>
     </div>
     <div class="form-row mt-2">
   <div class="col">
-    <a th:href="@{'/signos/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Signos Vitales</a>
+    <a th:href="@{'/signos/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;"><i class="fas fa-heartbeat"></i> Signos Vitales</a>
   </div>
   <div class="col">
-    <a th:href="@{'/evolucion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Evoluciòn Mèdica</a>
+    <a th:href="@{'/evolucion-m/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;"><i class="fas fa-notes-medical"></i> Evoluciòn Mèdica</a>
   </div>
     </div>
     <div class="form-row mt-2">
         <div class="col">
-          <a th:href="@{'/evolucion-e/'+ ${idficha}}" type="button" class="btn btn-light btn-block btn-menu" style="color: white;">Evoluciòn de Enfermerìa</a>
+          <a th:href="@{'/evolucion-e/'+ ${idficha}}" type="button" class="btn btn-light btn-block btn-menu" style="color: white;"><i class="fas fa-notes-medical"></i> Evoluciòn de Enfermerìa</a>
         </div>
         <div class="col">
-          <a th:href="@{'/evolucion-k/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;">Evoluciòn Kinèsica</a>
+          <a th:href="@{'/evolucion-k/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;"><i class="fas fa-notes-medical"></i> Evoluciòn Kinèsica</a>
         </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col">
+        <a th:href="@{'/epicrisis-med/'+ ${idficha}}" type="button" class="btn btn-light btn-block btn-menu" style="color: white;"><i class="fas fa-user-md"></i> Epicrisis Mèdica</a>
+      </div>
+      <div class="col">
+        <a th:href="@{'/proc-enf/'+ ${idficha}}" class="btn btn-light btn-block btn-menu" type="button" style="color: white;"><i class="fas fa-procedures"></i> Procedimientos Enfermerìa</a>
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col">
+        <a th:href="@{'/evolucion-o/'+ ${idficha}}" type="button" class="btn btn-light btn-block btn-menu" style="color: white;"><i class="fas fa-notes-medical"></i> Evoluciòn otros Prof.</a>
+      </div>
+      <div class="col">
+        
+      </div>
     </div>
   </div>
 

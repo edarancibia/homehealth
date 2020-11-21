@@ -13,7 +13,7 @@ public class AtencionMedica {
     private Long idAtencionMedica;
 
     @Column(name = "id_ficha")
-    private Long idFicha;
+    private int idFicha;
 
     @Column(name = "fecha")
     private Date fecha;
@@ -79,7 +79,7 @@ public class AtencionMedica {
         return idAtencionMedica;
     }
 
-    public Long getIdFicha() {
+    public int getIdFicha() {
         return idFicha;
     }
 
@@ -115,7 +115,7 @@ public class AtencionMedica {
         this.idAtencionMedica = idAtencionMedica;
     }
 
-    public void setIdFicha(Long idFicha) {
+    public void setIdFicha(int idFicha) {
         this.idFicha = idFicha;
     }
 
@@ -251,7 +251,7 @@ public class AtencionMedica {
 		this.exmanes = exmanes;
 	}
 	
-	public AtencionMedica(Long idAtencionMedica, Long idFicha, Date fecha, String examenFisico, String anamnesis,
+	public AtencionMedica(Long idAtencionMedica, int idFicha, Date fecha, String examenFisico, String anamnesis,
 			String diagPresuntivo, String indDomicilio, int rutUsu, int estado, int hta, int dld, int tbc, int epoc,
 			int lcfa, int acxfa, int acv, int depre, int ob, int dm, int ca, int cardio, String exmanes) {
 		this.idAtencionMedica = idAtencionMedica;

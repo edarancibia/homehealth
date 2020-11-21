@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AtMedicaRepository extends JpaRepository<AtencionMedica, Long> {
 
-    public abstract AtencionMedica findAtMedicaByIdFicha(Long idFicha);
+    public abstract AtencionMedica findAtencionMedicaByIdFicha(int idFicha);
 }

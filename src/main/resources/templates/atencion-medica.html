@@ -95,6 +95,7 @@
             </div>
 
             <div class="container2">
+                <a th:href="@{'/menu/'+ ${idficha}}" id="btnDiagIngreso" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
                 <button id="btnDiagIngreso" class="btn btn-small">Imprimir</button>
                 <button id="btnGuardaAtencionM" class="btn btn-main">Guardar Atenciòn</button> 
             </div>
@@ -102,5 +103,99 @@
     </div>
 </div>
 </body>
+<script>
+    $(document).ready(function(){
+        var base_url = 'http://localhost:8080/';
+        var idficha = $('#txtHiddenFicha').val();
+
+        $.ajax({
+            type: 'get',
+            url: base_url + 'atencion-m/get-atencion/' + idficha,
+            success: function(data){
+                if(data != ''){
+                    $('#txtAnamnesis').attr('disabled',true);
+                    $('#txtExamen').attr('disabled',true);
+                    $('#txtDiagnostico').attr('disabled',true);
+                    $('#txtIndicaciones').attr('disabled',true);
+                    $('#txtExamenes').attr('disabled',true);
+                    $('#btnGuardaAtencionM').attr('disabled',true);
+                    $('#dm').attr('disabled',true);
+                    $('#ca').attr('disabled',true);
+                    $('#cardio').attr('disabled',true);
+                    $('#hta').attr('disabled',true);
+                    $('#dld').attr('disabled',true);
+                    $('#tbc').attr('disabled',true);
+                    $('#epoc').attr('disabled',true);
+                    $('#lcfa').attr('disabled',true);
+                    $('#acxfa').attr('disabled',true);
+                    $('#acv').attr('disabled',true);
+                    $('#depre').attr('disabled',true);
+                    $('#ob').attr('disabled',true);
+                    
+                    $('#txtAnamnesis').val(data.anamnesis);
+                    $('#txtExamen').val(data.examenFisico);
+                    $('#txtDiagnostico').val(data.diagPresuntivo);
+                    $('#txtIndicaciones').val(data.indDomicilio);
+                    $('#txtExamenes').val(data.exmanes);
+
+                    if(data.dm != ''){
+                        $('#dm').attr('checked','checked');
+                    }
+
+                    if(data.dm != ''){
+                        $('#dm').attr('checked','checked');
+                    }
+
+                    if(data.cardio != ''){
+                        $('#cardio').attr('checked','checked');
+                    }
+
+                    if(data.hta != ''){
+                        $('#hta').attr('checked','checked');
+                    }
+
+                    if(data.dld != ''){
+                        $('#dld').attr('checked','checked');
+                    }
+
+                    if(data.tbc != ''){
+                        $('#tbc').attr('checked','checked');
+                    }
+
+                    if(data.epoc != ''){
+                        $('#epoc').attr('checked','checked');
+                    }
+
+                    if(data.lcfa != ''){
+                        $('#lcfa').attr('checked','checked');
+                    }
+
+                    if(data.acxfa != ''){
+                        $('#acxfa').attr('checked','checked');
+                    }
+
+                    if(data.dm != ''){
+                        $('#dm').attr('checked','checked');
+                    }
+
+                    if(data.acv != ''){
+                        $('#acv').attr('checked','checked');
+                    }
+
+                    if(data.depre != ''){
+                        $('#depre').attr('checked','checked');
+                    }
+
+                    if(data.ob != ''){
+                        $('#ob').attr('checked','checked');
+                    }
+                }
+            },
+            error: function(){
+                console.log('no hay datos');
+            }
+        });
+    });
+</script>
 
 </html>

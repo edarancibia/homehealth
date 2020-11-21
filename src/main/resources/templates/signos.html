@@ -4,7 +4,7 @@
     <div class="col-md-12 ancho-bordes">
         <p>Signos Vitales</p>
         <button type="button" data-target="#modalSignos" data-toggle="modal" id="btnAddSignos" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
-
+        <a th:href="@{'/menu/'+ ${idficha}}"  class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
         <table class="table table-striped" id="tabla-signos">
             <thead></thead>
         </table>

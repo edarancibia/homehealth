@@ -1,0 +1,24 @@
+<div th:include="cabecera-paciente.html" th:remove="tag"></div>
+
+<div class="container">
+    <div class="col-md-12 ancho-bordes">
+        <p>Epicrisis Mèdica</p>
+        <hr>
+        
+        <p>Resumen Hospitalizaciòn</p>
+        <textarea id="txtEpecrisisM" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
+
+        <p>Diagnòsticos</p>
+
+        <p>Indicaciones de Alta</p>
+        <textarea id="txtIndicaciones" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
+        <div class="container2">
+            <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
+            <button id="btnDiagIngreso" class="btn btn-small">Imprimir</button>
+            <button id="btnGuardaEpicrisisM" class="btn btn-main">Guardar Epicrisis</button> 
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

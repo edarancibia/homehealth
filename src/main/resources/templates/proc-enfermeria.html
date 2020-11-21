@@ -2,35 +2,32 @@
 
 <div class="container">
     <div class="col-md-12 ancho-bordes">
-        <p>Evoluciòn Mèdica</p>
-        <button type="button" data-target="#modalEvMedica" data-toggle="modal" id="btnAddEvMedica" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <p>Procedimientos de Enfermerìa</p>
+        <button type="button" data-target="#modalProce" data-toggle="modal" id="btnAddProce" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
         <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
 
-        <table class="table table-striped tabla-ev" id="tabla-evMedica">
+        <table class="table table-striped tabla-ev" id="tabla-proce">
             <thead></thead>
         </table>
     </div>
 </div>
 
 </body>
-<div class="modal fade" id="modalEvMedica" role="dialog">
+<div class="modal fade" id="modalProce" role="dialog">
     <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Registrar Evoluciòn</h5>
+          <h5 class="modal-title">Registrar Procedimiento</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <label class="col-xs-2 control-label labels-text">Evoluciòn</label>
-          <textarea id="txtEvolucionM" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
-
-          <label class="col-xs-2 control-label labels-text">Indicaciones</label>
-          <textarea id="txtIndicaciones" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
+          <label class="col-xs-2 control-label labels-text">Procedimiento</label>
+          <textarea id="txtProce" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btnSaveEvMedica" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <button type="button" id="btnSaveProce" class="btn btn-primary" data-dismiss="modal">Guardar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
@@ -44,17 +41,16 @@
 
         $.ajax({
             type: 'get',
-            url: base_url + 'evolucion-m/list/' + idficha,
+            url: base_url + 'proc-enf/list/' + idficha,
             success: function(data){
-                $("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Evoluciòn</th><th>Indicaciones</th>");
-				        $('#tabla-evMedica tr').remove();
+                $("#tabla-proce thead").append("<th>Ficha</th><th>Fecha</th><th>Procedimiento</th>");
+				        $('#tabla-proce tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
                         "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
-                        "<td>"+data[i].indicaciones+"</td>"+
-                    "</tr>").appendTo('#tabla-evMedica');
+                    "</tr>").appendTo('#tabla-proce');
                 });
             }
         });
