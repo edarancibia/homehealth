@@ -6,9 +6,10 @@
         <hr>
         
         <p>Resumen Hospitalizaciòn</p>
-        <textarea id="txtEpecrisisM" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
+        <textarea id="txtResumen" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
 
         <p>Diagnòsticos</p>
+        <textarea id="txtDiagEpi" cols="30" rows="10" class="form-control input-text" style="height: 50%;"></textarea>
 
         <p>Indicaciones de Alta</p>
         <textarea id="txtIndicaciones" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
@@ -21,4 +22,50 @@
 </div>
 
 </body>
+
+<script>
+    $(document).ready(function(){
+        var base_url = 'http://localhost:8080/';
+        var idficha = $('#txtHiddenFicha').val();
+
+        $.ajax({
+            type: 'get',
+            url: base_url + 'epicrisis-med/get-epicrisis/' + idficha,
+            success: function(data){
+                if(data != ''){
+                    $('#txtResumen').val(data.resumen);
+                    $('#txtIndicaciones').val(data.indicaciones);
+                    $('#txtResumen').attr('disabled', true);
+                    $('#txtIndicaciones').attr('disabled',true);
+
+                    $.ajax({
+                        type: 'get',
+                        url: base_url + 'epicrisis-med/get-epicrisis-diag/'+ idficha,
+                        success: function(data){
+                            $('#txtDiagEpi').val('1-'+data.diag1 +'\n2-'+ data.diag2 +'\n3-' + data.diag3 + '\n4-'+ data.diag4);
+                            $('#txtDiagEpi').attr('disabled',true);
+                        },
+                        error: function(){
+                            console.log('error al traer diagnosticos');
+                        }
+                    });
+                    
+                }
+            },
+            error: function(){
+                $.ajax({
+                        type: 'get',
+                        url: base_url + 'epicrisis-med/get-epicrisis-diag/'+ idficha,
+                        success: function(data){
+                            $('#txtDiagEpi').val('1-'+data.diag1 +'\n2-'+ data.diag2 +'\n3-' + data.diag3 + '\n4-'+ data.diag4);
+                            $('#txtDiagEpi').attr('disabled',true);
+                        },
+                        error: function(){
+                            console.log('error al traer diagnosticos');
+                        }
+                });
+            }
+        });
+    })
+</script>
 </html>

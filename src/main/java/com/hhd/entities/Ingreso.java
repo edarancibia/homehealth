@@ -13,7 +13,7 @@ public class Ingreso {
     private Long idIngreso;
 
     @Column(name = "id_ficha")
-    private Long idFicha;
+    private int idFicha;
 
     @Column(name = "fecha")
     private Date fecha;
@@ -61,7 +61,7 @@ public class Ingreso {
         return idIngreso;
     }
 
-    public Long getIdFicha() {
+    public int getIdFicha() {
         return idFicha;
     }
 
@@ -121,7 +121,7 @@ public class Ingreso {
         this.idIngreso = idIngreso;
     }
 
-    public void setIdFicha(Long idFicha) {
+    public void setIdFicha(int idFicha) {
         this.idFicha = idFicha;
     }
 
@@ -185,7 +185,7 @@ public class Ingreso {
         this.rutUsu = rutUsu;
     }
 
-    public Ingreso(Long idIngreso, Long idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
+    public Ingreso(Long idIngreso, int idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
         this.idIngreso = idIngreso;
         this.idFicha = idFicha;
         this.fecha = fecha;

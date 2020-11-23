@@ -64,6 +64,8 @@ public class Ficha {
 	public void setRutMed(int rutMed) {
 		this.rutMed = rutMed;
 	}
+	
+	
 
     public Ficha(Long idFicha, int rutPac, Date fecha, int estado, int rutMed) {
 		super();

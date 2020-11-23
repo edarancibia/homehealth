@@ -724,4 +724,49 @@ $(document).ready(function(){
                     });
                 }    
             });
+
+                       //- - - - EPICRISIS MEDICA - - - - - - - - --  
+                       $('#btnGuardaEpicrisisM').on('click', function(e){
+                        e.stopImmediatePropagation();
+                    
+                        var r = confirm("¿Confirma que desea guardar la epicrisis? Al hacerlo darà de alta al paciente.");
+                        if (r == true) {
+                            if($())
+                            var form_epicrisis = {
+                                'idFicha'      : $('#txtHiddenFicha').val(),
+                                'fecha'        : new Date(),
+                                'resumen'      : $('#txtResumen').val(),
+                                'indicaciones' : $('#txtIndicaciones').val(),
+                                'rutUsu'       : 1
+                            }
+                    
+                            $.ajax({
+                                type: 'post',
+                                url: base_url + 'epicrisis-med/add',
+                                contentType: 'application/json; charset=utf-8',
+                                dataType: 'json',
+                                data: JSON.stringify(form_epicrisis),
+                                success: function(){
+                                    $('#txtResumen').attr('disabled', true);
+                                    $('#txtIndicaciones').attr('disabled', true);
+                                    $('#btnGuardaEpicrisisM').attr('disabled', true);
+                                },
+                                error: function(){
+                                    console.log('error al guardar epicrisis');
+                                }
+                            }).done(function(){
+                                //DA DE ALTA AL PACIENTE CERRANDO LA FICHA
+                                $.ajax({
+                                    type: 'put',
+                                    url: base_url + 'epicrisis-med/alta/'+$('#txtHiddenFicha').val(),
+                                    success: function(){
+                                        console.log('dado de alta');
+                                    },
+                                    error: function(){
+                                        console.log('error al cerrar ficha');
+                                    }
+                                });
+                            });
+                        }    
+                    });
 });

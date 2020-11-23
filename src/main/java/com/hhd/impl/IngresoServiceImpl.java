@@ -21,4 +21,9 @@ public class IngresoServiceImpl implements IngresoService {
     public Ingreso findIngresoByIdIngreso(Long idIngreso) {
         return respository.findIngresoByIdIngreso(idIngreso);
     }
+
+	@Override
+	public Ingreso findIngresoByIdFicha(int idficha) {
+		return respository.findIngresoByIdFicha(idficha);
+	}
 }
