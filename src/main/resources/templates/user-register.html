@@ -1,0 +1,89 @@
+<div th:include="header.html" th:remove="tag"></div>
+
+<body style="background-color: #999999;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('/img/tarjetas2.jpg');"></div>
+
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50" style="padding-top: 30px;">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-59" style="padding-bottom: 30px;">
+						Registro de Usuario
+					</span>
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
+						<span class="label-input100">Nombres</span>
+						<input class="input100" type="text" name="name" placeholder="Nombres...">
+						<span class="focus-input100"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
+						<span class="label-input100">Apellido Paterno</span>
+						<input class="input100" type="text" name="name" placeholder="Apellido Paterno...">
+						<span class="focus-input100"></span>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
+						<span class="label-input100">Apellido Materno</span>
+						<input class="input100" type="text" name="name" placeholder="Apellido Materno...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Email es requerido: ex@abc.xyz">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" placeholder="Email addess...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate="Username is required">
+						<span class="label-input100">Repetir Email</span>
+						<input class="input100" type="text" name="username" placeholder="Repetir Email...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Password es requerido">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="pass" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Repetir Password es requerido">
+						<span class="label-input100">Repetir Password</span>
+						<input class="input100" type="password" name="repeat-pass" placeholder="*************">
+						<span class="focus-input100"></span>
+                    </div>
+                    
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Repetir Password es requerido">
+                        <span class="label-input100">Rol</span>
+                        <select name="cboRol" id="cboRol" class="form-control">
+                            <option value="0">Seleccione</option>
+                            <option value="1">Mèdico</option>
+                            <option value="2">Enfermero(a)</option>
+                            <option value="3">Kinesiòlogo(a)</option>
+                            <option value="4">Tens</option>
+                        </select>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Registrar
+							</button>
+						</div>
+
+						<a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							Ir a iniciar sesiòn
+							<i class="fas fa-sign-in-alt"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
