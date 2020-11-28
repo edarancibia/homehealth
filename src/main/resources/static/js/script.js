@@ -545,7 +545,7 @@ $(document).ready(function(){
             $('#btnSaveEducacion').on('click', function(e){
                 e.stopImmediatePropagation();
         
-                var r = confirm("¿Confirma que desea guardar la Educaciòn?");
+                var r = confirm("¿Confirma que desea guardar la Educación?");
                 if (r == true) {
                     var form_educacion = {
                         'idFicha'    : $('#txtHiddenFicha').val(),
@@ -592,7 +592,7 @@ $(document).ready(function(){
             $('#btnSaveEvOtros').on('click', function(e){
                 e.stopImmediatePropagation();
         
-                var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
+                var r = confirm("¿Confirma que desea guardar la Evolución?");
                 if (r == true) {
                     var form_evolucion_o = {
                         'idFicha'    : $('#txtHiddenFicha').val(),
@@ -732,7 +732,7 @@ $(document).ready(function(){
                        $('#btnGuardaEpicrisisM').on('click', function(e){
                         e.stopImmediatePropagation();
                     
-                        var r = confirm("¿Confirma que desea guardar la epicrisis? Al hacerlo darà de alta al paciente.");
+                        var r = confirm("¿Confirma que desea guardar la epicrisis? Al hacerlo dará de alta al paciente.");
                         if (r == true) {
                             if($())
                             var form_epicrisis = {
@@ -777,7 +777,7 @@ $(document).ready(function(){
                 $('#btnSaveEvTens').on('click', function(e){
                     e.stopImmediatePropagation();
                 
-                    var r = confirm("¿Confirma que desea guardar la evoluciòn?");
+                    var r = confirm("¿Confirma que desea guardar la evolución?");
                     if (r == true) {
                         var form_evolucion_t = {
                             'idFicha'    : $('#txtHiddenFicha').val(),

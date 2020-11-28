@@ -2,9 +2,9 @@
 
 <div class="container">
     <div class="col-md-12 ancho-bordes">
-        <p>Evoluciòn Kinèsica</p>
+        <p>Evolución Kinésica</p>
         <button type="button" data-target="#modalEvKine" data-toggle="modal" id="btnAddEvKine" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
-        <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
+        <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
 
         <table class="table table-striped tabla-ev" id="tabla-evKine">
             <thead></thead>
@@ -17,13 +17,13 @@
     <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Registrar Evoluciòn</h5>
+          <h5 class="modal-title">Registrar Evolución</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <label class="col-xs-2 control-label labels-text">Evoluciòn</label>
+          <label class="col-xs-2 control-label labels-text">Evolución</label>
           <textarea id="txtEvolucionK" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
         </div>
         <div class="modal-footer">
@@ -44,7 +44,7 @@
             type: 'get',
             url: base_url + 'evolucion-k/list/' + idficha,
             success: function(data){
-                $("#tabla-evKine thead").append("<th>Ficha</th><th>Fecha</th><th>Evoluciòn</th>");
+                $("#tabla-evKine thead").append("<th>Ficha</th><th>Fecha</th><th>Evolución</th>");
 				        $('#tabla-evEnKine tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
