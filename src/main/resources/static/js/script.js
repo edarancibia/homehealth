@@ -773,7 +773,7 @@ $(document).ready(function(){
                         }    
                     });
 
-                //- - - - EVOLUCION TENS - - - - - - - - --  
+                //- - - - EVOLUCION TENS - - - - - - - - -- - - - 
                 $('#btnSaveEvTens').on('click', function(e){
                     e.stopImmediatePropagation();
                 
