@@ -59,7 +59,7 @@
                         url: base_url + 'epicrisis-med/get-epicrisis-diag/'+ idficha,
                         success: function(data){
                             $('#txtDiagEpi').val('1-'+data.diag1 +'\n2-'+ data.diag2 +'\n3-' + data.diag3 + '\n4-'+ data.diag4);
-                            $('#txtDiagEpi').attr('disabled',true);
+                            //$('#txtDiagEpi').attr('disabled',true);
                         },
                         error: function(){
                             console.log('error al traer diagnosticos');

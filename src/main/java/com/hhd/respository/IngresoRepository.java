@@ -9,4 +9,6 @@ public interface IngresoRepository extends JpaRepository<Ingreso, Long> {
 
     public abstract Ingreso findIngresoByIdIngreso(Long idIngreso);
     public abstract Ingreso findIngresoByIdFicha(int idficha);
+    
+    
 }

@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
 
-    var base_url = 'http://localhost:8080/';
-    //var base_url = 'https://hhosorno.herokuapp.com/';
+    //var base_url = 'http://localhost:8080/';
+    var base_url = 'https://hhosorno.herokuapp.com/';
 
     $('.input-number').on('input', function () { 
     	this.value = this.value.replace(/[^0-9]/g,'');
@@ -108,7 +108,8 @@ $(document).ready(function(){
                                         'planTto2'          : $('#txtTrat2').val(),
                                         'planTto3'          : $('#txtTrat3').val(),
                                         'planTto4'          : $('#txtTrat4').val(),
-                                        'rutUsu'            : $('#txtRutUsu').val()
+                                        'rutUsu'            : $('#txtRutUsu').val(),
+                                        'edad'              : $('#txtEdad').val()
                                     }
     
                                     $.ajax({
@@ -195,6 +196,7 @@ $(document).ready(function(){
                                         'planTto2'          : $('#txtTrat2').val(),
                                         'planTto3'          : $('#txtTrat3').val(),
                                         'planTto4'          : $('#txtTrat4').val(),
+                                        'edad'              : $('#txtEdad').val(),
                                         'rutUsu'            : 1
                                     }
     
@@ -634,7 +636,7 @@ $(document).ready(function(){
             });
     
         //- - - - EVOLUCION OTROS PROFESIONALES - - - - - - - - --  
-            $('#btnSaveEvOtros').on('click', function(e){
+         /*   $('#btnSaveEvOtros').on('click', function(e){
                 e.stopImmediatePropagation();
         
                 var r = confirm("¿Confirma que desea guardar la Evoluciòn?");
@@ -678,9 +680,9 @@ $(document).ready(function(){
                     });
                 }
                 
-            });
+            });*/
 
-            //- - - - EVOLUCION OTROS PROFESIONALES - - - - - - - - --  
+            //- - - - PROCEDIMIENTOS - - - - - - - - --  
             $('#btnSaveProce').on('click', function(e){
                 e.stopImmediatePropagation();
             
@@ -770,4 +772,50 @@ $(document).ready(function(){
                             });
                         }    
                     });
+
+                //- - - - EVOLUCION TENS - - - - - - - - --  
+                $('#btnSaveEvTens').on('click', function(e){
+                    e.stopImmediatePropagation();
+                
+                    var r = confirm("¿Confirma que desea guardar la evoluciòn?");
+                    if (r == true) {
+                        var form_evolucion_t = {
+                            'idFicha'    : $('#txtHiddenFicha').val(),
+                            'fecha'      : new Date(),
+                            'descripcion': $('#txtEvTens').val(),
+                            'rutUsu'     : 1
+                        }
+                
+                        $.ajax({
+                            type: 'post',
+                            url: base_url + 'ev-tens/add',
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            data: JSON.stringify(form_evolucion_t),
+                            success: function(){
+                                $('#modalEvTens').modal('hide');
+                                $('body').removeClass('modal-open');
+                                $('.modal-backdrop').remove();
+                                $('#txtEvTens').val('');
+                                $.ajax({
+                                    type: 'get',
+                                    url: base_url + 'ev-tens/list/' + $('#txtHiddenFicha').val(),
+                                    success: function(data){
+                                        $('#tabla-evTens tr').remove();
+                                        $.each(data, function(i, item){
+                                            $('<tr>').html(
+                                                "<td>"+data[i].id_ficha+"</td>" +
+                                                "<td>"+data[i].fecha+"</td>" +
+                                                "<td>"+data[i].descripcion+"</td>" +
+                                                "</tr>").appendTo('#tabla-evTens');
+                                        });
+                                    }
+                                });
+                            },
+                            error: function(){
+                                console.log('error al guardar evolucion');
+                            }
+                        });
+                    }    
+                });
 });

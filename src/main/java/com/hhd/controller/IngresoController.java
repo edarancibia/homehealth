@@ -6,6 +6,18 @@ import com.hhd.entities.Paciente;
 import com.hhd.impl.FichaServiceImpl;
 import com.hhd.impl.IngresoServiceImpl;
 import com.hhd.impl.PacienteServiceImpl;
+import com.hhd.util.PdfService;
+import com.lowagie.text.DocumentException;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +45,9 @@ public class IngresoController {
     
     @Autowired
     public IngresoServiceImpl ingresoService;
+    
+    @Autowired
+    public PdfService pdfService;
 
     @GetMapping("/")
     public ModelAndView index(){
@@ -50,6 +65,22 @@ public class IngresoController {
     public ResponseEntity<?> addIngreso(@RequestBody Ingreso ingreso){
     	Ingreso newIngreso = ingresoService.addIngreso(ingreso);
     	return new ResponseEntity<Ingreso>(newIngreso,HttpStatus.OK);
+    }
+    
+    @GetMapping("/export-pdf")
+    public void downloadPDFResource(HttpServletResponse response) {
+        try {
+            Path file = Paths.get(pdfService.generatePdf().getAbsolutePath());
+            if (Files.exists(file)) {
+                response.setContentType("application/pdf");
+                response.addHeader("Content-Disposition",
+                        "attachment; filename=" + file.getFileName());
+                Files.copy(file, response.getOutputStream());
+                response.getOutputStream().flush();
+            }
+        } catch (DocumentException | IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

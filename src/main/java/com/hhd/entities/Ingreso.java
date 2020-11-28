@@ -17,6 +17,9 @@ public class Ingreso {
 
     @Column(name = "fecha")
     private Date fecha;
+    
+    @Column(name = "edad")
+    private int edad;
 
     @Column(name = "alergias")
     private String alergias;
@@ -185,26 +188,38 @@ public class Ingreso {
         this.rutUsu = rutUsu;
     }
 
-    public Ingreso(Long idIngreso, int idFicha, Date fecha, String alergias, String telefonoUsuario, String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4, String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
-        this.idIngreso = idIngreso;
-        this.idFicha = idFicha;
-        this.fecha = fecha;
-        this.alergias = alergias;
-        this.telefonoUsuario = telefonoUsuario;
-        this.telefonoCuidador = telefonoCuidador;
-        this.rutMedDeriva = rutMedDeriva;
-        this.diag1 = diag1;
-        this.diag2 = diag2;
-        this.diag3 = diag3;
-        this.diag4 = diag4;
-        this.planTto1 = planTto1;
-        this.planTto2 = planTto2;
-        this.planTto3 = planTto3;
-        this.planTto4 = planTto4;
-        this.rutUsu = rutUsu;
-    }
+    public Ingreso(Long idIngreso, int idFicha, Date fecha, int edad, String alergias, String telefonoUsuario,
+			String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4,
+			String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
+		super();
+		this.idIngreso = idIngreso;
+		this.idFicha = idFicha;
+		this.fecha = fecha;
+		this.edad = edad;
+		this.alergias = alergias;
+		this.telefonoUsuario = telefonoUsuario;
+		this.telefonoCuidador = telefonoCuidador;
+		this.rutMedDeriva = rutMedDeriva;
+		this.diag1 = diag1;
+		this.diag2 = diag2;
+		this.diag3 = diag3;
+		this.diag4 = diag4;
+		this.planTto1 = planTto1;
+		this.planTto2 = planTto2;
+		this.planTto3 = planTto3;
+		this.planTto4 = planTto4;
+		this.rutUsu = rutUsu;
+	}
 
-    public Ingreso() {
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public Ingreso() {
 
     }
 }
