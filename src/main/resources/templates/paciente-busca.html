@@ -1,0 +1,39 @@
+<div th:include="header.html" th:remove="tag"></div>
+<div th:include="nav.html" th:remove="tag"></div>
+
+<div class="container">
+    <div class="container">
+        <div class="card">
+          <div class="card-header">
+            <form action="" class="form-inline">
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 labels-text">Rut &nbsp</label>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control input-text input-number" id="txtRutBusca" placeholder="Sin puntos, guión ni dígito" maxlength="8"  style="width: 200px;">
+                    </div>
+                </div>
+                &nbsp
+                <div class="form-group divs-form">
+                    <label class="col-xs-2 labels-text">&nbsp</label>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-small" id="btnBuscaPaciente"><i class="fas fa-search"></i> Buscar</button>
+                    </div>
+                </div>
+                    
+            </form>
+          </div>
+          <div class="card-body">
+              <label id="lblPaciente"></label>
+              <br>
+              <div class="table-responsive">
+                <table id="tabla-fichas" class="table table-hover">
+                    <thead></thead>
+                </table>
+              </div>
+          </div> 
+        </div>
+      </div>
+</div>
+
+</body>
+</html>

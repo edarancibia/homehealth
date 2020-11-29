@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.hhd.entities.Ficha;
 import com.hhd.entities.Paciente;
+import com.hhd.impl.FichaServiceImpl;
 import com.hhd.impl.PacienteServiceImpl;
 
 @RestController
@@ -26,6 +29,9 @@ public class PacienteController {
 
 	@Autowired
 	public PacienteServiceImpl pacienteService;
+	
+	@Autowired
+	public FichaServiceImpl fichaService;
 	
     @GetMapping("/verifica-paciente/{rutnum}")
     public ResponseEntity<?> verificaPaciente(@PathVariable("rutnum") int rutnum){
@@ -57,5 +63,18 @@ public class PacienteController {
 	public @ResponseBody List<Map<String, Object>> getPacientesList(){
 		 List<Map<String, Object>> pacientes = pacienteService.getListaPacienteActuales();
 		 return pacientes;
+	}
+	
+	@GetMapping("/search")
+	public ModelAndView search() {
+		ModelAndView mv = new ModelAndView("paciente-busca");
+		return mv;
+	}
+	
+	//LISTA DE FICHAS X PACIENTE
+	@GetMapping("/fichas/{rutnum}")
+	public @ResponseBody List<Map<String, Object>> getFichas(@PathVariable int rutnum){
+		List<Map<String, Object>> fichas = fichaService.findFichasByRut(rutnum);
+		return fichas;
 	}
 }

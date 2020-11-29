@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
 
-    //var base_url = 'http://localhost:8080/';
-    var base_url = 'https://hhosorno.herokuapp.com/';
+    var base_url = 'http://localhost:8080/';
+    //var base_url = 'https://hhosorno.herokuapp.com/';
 
     $('.input-number').on('input', function () { 
     	this.value = this.value.replace(/[^0-9]/g,'');
@@ -820,4 +820,42 @@ $(document).ready(function(){
                         });
                     }    
                 });
+
+        // - - - BUSCADOR DE PACIENTES - - - - 
+        $('#btnBuscaPaciente').on('click', function(e){
+            e.stopImmediatePropagation();
+
+            var rut = $('#txtRutBusca').val();
+            
+            $.ajax({
+                type: 'get',
+                url: base_url + 'paciente/verifica-paciente/'+rut,
+                success: function(data){
+                    console.log(data);
+                    $('#lblPaciente').text(data.nombre.toUpperCase()+' '+ data.aPat.toUpperCase() +' '+ data.aMat.toUpperCase());
+
+                    //llena tabla
+                    $.ajax({
+                        type: 'get',
+                        url: base_url + 'paciente/fichas/' + rut,
+                        success: function(data){
+                            $("#tabla-fichas thead").append("<th>Ficha</th><th>Fecha</th>");
+                            $('#tabla-fichas tr').remove();
+                            $.each(data, function(i, item){
+                                $('<tr>').html(
+                                    "<td>"+data[i].idficha+"</td>" +
+                                    "<td><a target='blank' href="+base_url+'menu/'+data[i].idficha+">"+data[i].fecha+"</a></td>" +
+                                    "</tr>").appendTo('#tabla-fichas');
+                            });
+                        }
+                    });
+                },
+                error: function(){
+                    console.log('error al traer datos del paciente');
+                    alert('No se encontraton resultados');
+                    $('#txtRutBusca').focus();
+                }
+            });
+
+        });
 });
