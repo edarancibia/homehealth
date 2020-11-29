@@ -34,6 +34,8 @@
           <input type="text" class="form-control input-text" id="txtHgt">
           <label class="col-xs-2 control-label labels-text">RESP.</label>
           <input type="text" class="form-control input-text" id="txtResp">
+          <label class="col-xs-2 control-label labels-text">Glasgow</label>
+          <input type="text" class="form-control input-text" id="txtGlasgow">
         </div>
         <div class="modal-footer">
           <button type="button" id="btnSaveSignos" class="btn btn-primary" data-dismiss="modal">Guardar</button>
@@ -53,7 +55,7 @@
             type: 'get',
             url: base_url + 'signos/list/' + idficha,
             success: function(data){
-                $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th>");
+                $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th><th>Glasgow</th>");
 				$('#tabla-signos tr').remove();
                 $.each(data, function(i, item){
 					$('<tr>').html(
@@ -62,6 +64,7 @@
                         "<td>"+data[i].sat+"</a></td>"+
                         "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
                         "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
+                        "<td>"+data[i].glasgow+"</a></td>"+
                          "</tr>").appendTo('#tabla-signos');
                 });
             }

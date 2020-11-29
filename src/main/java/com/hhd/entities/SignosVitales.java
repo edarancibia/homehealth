@@ -41,6 +41,9 @@ public class SignosVitales {
     
     @Column(name = "resp")
     private String resp;
+    
+    @Column(name = "glasgow")
+    private String glasgow;
 
     public Long getIdSignos() {
         return idSignos;
@@ -129,9 +132,18 @@ public class SignosVitales {
 	public void setResp(String resp) {
 		this.resp = resp;
 	}
+	
 
-    public SignosVitales(Long idSignos, Long idAtencionEnf, Long idFicha, Date fecha, String fc, String sat, String pa,
-			String tax, String hgt, int rutUsu, String resp) {
+    public String getGlasgow() {
+		return glasgow;
+	}
+
+	public void setGlasgow(String glasgow) {
+		this.glasgow = glasgow;
+	}
+
+	public SignosVitales(Long idSignos, Long idAtencionEnf, Long idFicha, Date fecha, String fc, String sat, String pa,
+			String tax, String hgt, int rutUsu, String resp, String glasgow) {
 		this.idSignos = idSignos;
 		this.idAtencionEnf = idAtencionEnf;
 		this.idFicha = idFicha;
@@ -143,6 +155,7 @@ public class SignosVitales {
 		this.hgt = hgt;
 		this.rutUsu = rutUsu;
 		this.resp = resp;
+		this.glasgow = glasgow;
 	}
 
 	public SignosVitales() {

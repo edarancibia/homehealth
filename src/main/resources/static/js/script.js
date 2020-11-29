@@ -353,6 +353,7 @@ $(document).ready(function(){
                 'tax'       : $('#txtTax').val(),
                 'hgt'       : $('#txtHgt').val(),
                 'resp'      : $('#txtResp').val(),
+                'glasgow'   : $('#txtGlasgow').val(),
                 'rutUsu'    : 1
             }
 
