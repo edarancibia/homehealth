@@ -382,6 +382,7 @@ $(document).ready(function(){
                                     "<td>"+data[i].sat+"</a></td>"+
                                     "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
                                     "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
+                                    "<td>"+data[i].glasgow+"</td>"+
                                      "</tr>").appendTo('#tabla-signos');
                             });
                         }
