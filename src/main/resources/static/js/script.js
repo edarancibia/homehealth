@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
 
-    var base_url = 'http://localhost:8080/';
-    //var base_url = 'https://hhosorno.herokuapp.com/';
+    //var base_url = 'http://localhost:8080/';
+    var base_url = 'https://hhosorno.herokuapp.com/';
 
     $('.input-number').on('input', function () { 
     	this.value = this.value.replace(/[^0-9]/g,'');
@@ -108,7 +108,7 @@ $(document).ready(function(){
                                         'planTto2'          : $('#txtTrat2').val(),
                                         'planTto3'          : $('#txtTrat3').val(),
                                         'planTto4'          : $('#txtTrat4').val(),
-                                        'rutUsu'            : $('#txtRutUsu').val(),
+                                        'rutUsu'            : $('#txtRutSession').val(),
                                         'edad'              : $('#txtEdad').val()
                                     }
     
@@ -197,7 +197,7 @@ $(document).ready(function(){
                                         'planTto3'          : $('#txtTrat3').val(),
                                         'planTto4'          : $('#txtTrat4').val(),
                                         'edad'              : $('#txtEdad').val(),
-                                        'rutUsu'            : 1
+                                        'rutUsu'            : $('#txtRutSession').val()
                                     }
     
                                     $.ajax({
@@ -298,7 +298,7 @@ $(document).ready(function(){
                     'examenFisico'  : $('#txtExamen').val(),
                     'diagPresuntivo': $('#txtDiagnostico').val(),
                     'indDomicilio'  : $('#txtIndicaciones').val(),
-                    'rutUsu'        : 1, //cambiar
+                    'rutUsu'        : $('#txtRutSession').val(),
                     'estado'        : 1,
                     'exmenes'      : $('#txtExamenes').val(),
                     'dm'            : dm,
@@ -354,7 +354,7 @@ $(document).ready(function(){
                 'hgt'       : $('#txtHgt').val(),
                 'resp'      : $('#txtResp').val(),
                 'glasgow'   : $('#txtGlasgow').val(),
-                'rutUsu'    : 1
+                'rutUsu'    : $('#txtRutSession').val()
             }
 
             $.ajax({
@@ -383,6 +383,7 @@ $(document).ready(function(){
                                     "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
                                     "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
                                     "<td>"+data[i].glasgow+"</td>"+
+                                    "<td>"+data[i].usuario+"</td>"+
                                      "</tr>").appendTo('#tabla-signos');
                             });
                         }
@@ -407,7 +408,7 @@ $(document).ready(function(){
                 'fecha'       : new Date(),
                 'descripcion' : $('#txtEvolucionM').val(),
                 'indicaciones' : $('#txtIndicaciones').val(),
-                'rutUsu'      : 1
+                'rutUsu'      : $('#txtRutSession').val()
             }
 
             $.ajax({
@@ -436,6 +437,7 @@ $(document).ready(function(){
                                     "<td>"+data[i].fecha+"</td>" +
                                     "<td>"+data[i].descripcion+"</td>" +
                                     "<td>"+data[i].indicaciones+"</td>" +
+                                    "<td>"+data[i].usuario+"</td>" +
                                      "</tr>").appendTo('#tabla-evMedica');
                             });
                         }
@@ -459,7 +461,7 @@ $(document).ready(function(){
                     'idFicha'    : $('#txtHiddenFicha').val(),
                     'fecha'      : new Date(),
                     'descripcion': $('#txtEvolucionE').val(),
-                    'rutUsu'     : 1
+                    'rutUsu'     : $('#txtRutSession').val()
                 }
     
                 $.ajax({
@@ -483,6 +485,7 @@ $(document).ready(function(){
                                         "<td>"+data[i].id_ficha+"</td>" +
                                         "<td>"+data[i].fecha+"</td>" +
                                         "<td>"+data[i].descripcion+"</td>" +
+                                        "<td>"+data[i].usuario+"</td>"+
                                          "</tr>").appendTo('#tabla-evEnfermeria');
                                 });
                             }
@@ -506,7 +509,7 @@ $(document).ready(function(){
                     'idFicha'    : $('#txtHiddenFicha').val(),
                     'fecha'      : new Date(),
                     'descripcion': $('#txtEvolucionK').val(),
-                    'rutUsu'     : 1
+                    'rutUsu'     : $('#txtRutSession').val()
                 }
     
                 $.ajax({
@@ -530,6 +533,7 @@ $(document).ready(function(){
                                         "<td>"+data[i].id_ficha+"</td>" +
                                         "<td>"+data[i].fecha+"</td>" +
                                         "<td>"+data[i].descripcion+"</td>" +
+                                        "<td>"+data[i].usuario+"</td>"+
                                          "</tr>").appendTo('#tabla-evKine');
                                 });
                             }
@@ -553,7 +557,7 @@ $(document).ready(function(){
                         'idFicha'    : $('#txtHiddenFicha').val(),
                         'fecha'      : new Date(),
                         'descripcion': $('#txtEducacion').val(),
-                        'rutUsu'     : 1
+                        'rutUsu'     : $('#txtRutSession').val()
                     }
         
                     $.ajax({
@@ -577,6 +581,7 @@ $(document).ready(function(){
                                             "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
+                                            "<td>"+data[i].usuario+"</td>"+
                                              "</tr>").appendTo('#tabla-educacion');
                                     });
                                 }
@@ -600,7 +605,7 @@ $(document).ready(function(){
                         'idFicha'    : $('#txtHiddenFicha').val(),
                         'fecha'      : new Date(),
                         'descripcion': $('#txtEvolucionO').val(),
-                        'rutUsu'     : 1
+                        'rutUsu'     : $('#txtRutSession').val()
                     }
         
                     $.ajax({
@@ -624,6 +629,7 @@ $(document).ready(function(){
                                             "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
+                                            "<td>"+data[i].usuario+"</td>"+
                                              "</tr>").appendTo('#tabla-evOtros');
                                     });
                                 }
@@ -694,7 +700,7 @@ $(document).ready(function(){
                         'idFicha'    : $('#txtHiddenFicha').val(),
                         'fecha'      : new Date(),
                         'descripcion': $('#txtProce').val(),
-                        'rutUsu'     : 1
+                        'rutUsu'     : $('#txtRutSession').val()
                     }
             
                     $.ajax({
@@ -718,6 +724,7 @@ $(document).ready(function(){
                                             "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
+                                            "<td>"+data[i].usuario+"</td>"+
                                             "</tr>").appendTo('#tabla-proce');
                                     });
                                 }
@@ -742,7 +749,7 @@ $(document).ready(function(){
                                 'fecha'        : new Date(),
                                 'resumen'      : $('#txtResumen').val(),
                                 'indicaciones' : $('#txtIndicaciones').val(),
-                                'rutUsu'       : 1
+                                'rutUsu'       : $('#txtRutSession').val()
                             }
                     
                             $.ajax({
@@ -785,7 +792,7 @@ $(document).ready(function(){
                             'idFicha'    : $('#txtHiddenFicha').val(),
                             'fecha'      : new Date(),
                             'descripcion': $('#txtEvTens').val(),
-                            'rutUsu'     : 1
+                            'rutUsu'     : $('#txtRutSession').val()
                         }
                 
                         $.ajax({
@@ -809,6 +816,7 @@ $(document).ready(function(){
                                                 "<td>"+data[i].id_ficha+"</td>" +
                                                 "<td>"+data[i].fecha+"</td>" +
                                                 "<td>"+data[i].descripcion+"</td>" +
+                                                "<td>"+data[i].usuario+"</td>"+
                                                 "</tr>").appendTo('#tabla-evTens');
                                         });
                                     }

@@ -25,7 +25,8 @@
 
     <!-- Page Content Holder -->
     <div id="content" class="content">  
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" style="
+        height: 60px;">
             <div class="container-fluid">
     
                 <div class="navbar-header">
@@ -33,8 +34,13 @@
                         <i class="glyphicon glyphicon-align-left"></i>
                         <span>Esconder Menú</span>
                     </button>
-
-                    <label >Nombre de Usuario</label>
+                </div>
+                <input type="hidden" id="txtRutSession" th:value="${rutusu}">
+                <div style="width: max;">
+                    <div style="width: 300px;float:right;">
+                        <a href="/logout" class="logout">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
+                        <p id="label-username" th:text="${username}" style="font-size: 14px;"><i class="fas fa-user"></i></p>
+                    </div>
                 </div>
             </div>
         </nav>

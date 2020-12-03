@@ -22,7 +22,7 @@ public class EducacionEnf {
     private String descripcion;
 
     @Column(name = "rut_usu")
-    private int rutUsu;
+    private String rutUsu;
 
     public Long getIdEducacionEnf() {
         return idEducacionEnf;
@@ -34,10 +34,6 @@ public class EducacionEnf {
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public int getRutUsu() {
-        return rutUsu;
     }
 
     public void setIdEducacionEnf(Long idEducacionEnf) {
@@ -52,10 +48,6 @@ public class EducacionEnf {
         this.descripcion = descripcion;
     }
 
-    public void setRutUsu(int rutUsu) {
-        this.rutUsu = rutUsu;
-    }
-
     public Long getIdFicha() {
         return idFicha;
     }
@@ -64,7 +56,16 @@ public class EducacionEnf {
         this.idFicha = idFicha;
     }
 
-    public EducacionEnf(Long idEducacionEnf, Long idFicha, Date fecha, String descripcion, int rutUsu) {
+    
+    public String getRutUsu() {
+		return rutUsu;
+	}
+
+	public void setRutUsu(String rutUsu) {
+		this.rutUsu = rutUsu;
+	}
+
+	public EducacionEnf(Long idEducacionEnf, Long idFicha, Date fecha, String descripcion, String rutUsu) {
         this.idEducacionEnf = idEducacionEnf;
         this.idFicha = idFicha;
         this.fecha = fecha;

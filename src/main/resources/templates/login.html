@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Ficha de Hospitalizaciòn Docimiliaria - Registro de Usuario</title>
+    <title>Ficha de Hospitalización Docimiliaria - Login</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -79,85 +79,36 @@
 			<div class="login100-more" style="background-image: url('/img/tarjetas2.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50" style="padding-top: 30px;">
-				<form class="login100-form validate-form" th:action="@{/save}" method="POST" >
+				<form class="login100-form validate-form" th:action="@{/home}" th:object="${usuario}" method="POST">
 					<span class="login100-form-title p-b-59" style="padding-bottom: 30px;">
-						Registro de Usuario
+						Ingreso al sistema
 					</span>
-
-					<div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
-						<span class="label-input100">Rut</span>
-						<input class="input100" type="text" th:field="*{usuario.rutNum}" id="txtRutNum" name="rutnum" placeholder="Ej: 18123453-7" required>
-						<span class="focus-input100"></span>
-                    </div>
-
-					<div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
-						<span class="label-input100">Nombres</span>
-						<input class="input100" type="text" th:field="*{usuario.nombre}" name="name" placeholder="Nombres..." required>
-						<span class="focus-input100"></span>
-                    </div>
                     
-                    <div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
-						<span class="label-input100">Apellido Paterno</span>
-						<input class="input100" type="text" th:field="*{usuario.aPat}" name="name" placeholder="Apellido Paterno..." required>
-						<span class="focus-input100"></span>
-                    </div>
-                    
-                    <div class="wrap-input100 validate-input text-login-botom" data-validate="Nombre es requerido">
-						<span class="label-input100">Apellido Materno</span>
-						<input class="input100" type="text" th:field="*{usuario.aMat}" name="name" placeholder="Apellido Materno...">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Email es requerido: ex@abc.xyz">
-						<span class="label-input100">Email</span>
-						<input class="input100" type="text" th:field="*{usuario.email}" id="txtEmail" name="email" placeholder="Email..." required>
-						<span class="focus-input100"></span>
-					</div>
-
 					<div class="wrap-input100 validate-input text-login-botom" data-validate="Username is required">
-						<span class="label-input100">Repetir Email</span>
-						<input class="input100" type="text" name="username" id="txtEmail2" placeholder="Repetir Email..." required>
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Password es requerido"> 
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Password es requerido">
 						<span class="label-input100">Password</span>
-						<input class="input100" th:field="*{usuario.clave}" id="txtPass" minlength="6" type="password" name="pass" placeholder="*************" required>
+						<input class="input100" type="password" name="clave" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Repetir Password es requerido">
-						<span class="label-input100">Repetir Password</span>
-						<input class="input100" type="password" id="txtPass2" name="repeat-pass" placeholder="*************" required>
-						<span class="focus-input100"></span>
-                    </div>
-                    
+                    <div th:if="${errormail != null}" class="alert alert-danger" role="alert">Usuario o contraseña incorrectos</div>
 
-					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Repetir Password es requerido">
-                        <span class="label-input100">Rol</span>
-                        <select th:field="*{usuario.role}" name="cboRol" id="cboRol" class="form-control" required>
-                            <option value="">Seleccione</option>
-                            <option value="MED">Mèdico</option>
-                            <option value="ENF">Enfermero(a)</option>
-                            <option value="KIN">Kinesiòlogo(a)</option>
-                            <option value="TEN">Tens</option>
-                        </select>
-						<span class="focus-input100"></span>
-					</div>
-
-					<div th:if="${errormail != null}" class="alert alert-danger" role="alert">El correo ya está registrado</div>
-					<div th:if="${success != null}" class="alert alert-success" role="alert">Usuario registrado exitosamente</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button type="submit" class="login100-form-btn">
-								Registrar
+							<button class="login100-form-btn">
+								Iniciar Sesión
 							</button>
 						</div>
 
-						<a th:href="@{'/'}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-							Ir a iniciar sesión
+						<a th:href="@{'/register/'}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							Registrarse
 							<i class="fas fa-sign-in-alt"></i>
 						</a>
 					</div>
@@ -167,50 +118,4 @@
 	</div>
 
 </body>
-<script>
-	var Fn = {
-  // Valida el rut con su cadena completa "XXXXXXXX-X"
-  validaRut : function (rutCompleto) {
-    rutCompleto = rutCompleto.replace("‐","-");
-    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
-      return false;
-    var tmp   = rutCompleto.split('-');
-    var digv  = tmp[1]; 
-    var rut   = tmp[0];
-    if ( digv == 'K' ) digv = 'k' ;
-    
-    return (Fn.dv(rut) == digv );
-  },
-  dv : function(T){
-    var M=0,S=1;
-    for(;T;T=Math.floor(T/10))
-      S=(S+T%10*(9-M++%6))%11;
-    return S?S-1:'k';
-  }
-}
-
-$('#txtRutNum').blur(function(){
-	if (Fn.validaRut( $("#txtRutNum").val() )){
-    	console.log("El rut ingresado es válido");
-  } else {
-		alert("El Rut no es válido");
-		$('#txtRutNum').focus();
-  }
-});
-
-$('#txtEmail2').blur(function(){
-	if($('#txtEmail').val() != $('#txtEmail2').val()){
-		alert('Los correos no coinciden');
-		$('#txtEmail').focus();
-	}
-});
-
-$('#txtPass2').blur(function(){
-	if($('#txtPass').val() != $('#txtPass2').val()){
-		alert('Las contraseñas no coinciden');
-		$('#txtPass').focus();
-	}
-})
-
-</script>
 </html>

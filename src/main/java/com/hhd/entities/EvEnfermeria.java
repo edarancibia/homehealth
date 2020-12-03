@@ -28,7 +28,7 @@ public class EvEnfermeria {
 	private String descripcion;
 	
 	@Column(name = "rut_usu")
-	private int rutUsu;
+	private String rutUsu;
 
 	public Long getIdEvolucionEnf() {
 		return idEvolucionEnf;
@@ -62,15 +62,16 @@ public class EvEnfermeria {
 		this.descripcion = descripcion;
 	}
 
-	public int getRutUsu() {
+
+	public String getRutUsu() {
 		return rutUsu;
 	}
 
-	public void setRutUsu(int rutUsu) {
+	public void setRutUsu(String rutUsu) {
 		this.rutUsu = rutUsu;
 	}
 
-	public EvEnfermeria(Long idEvolucionEnf, int idFicha, Date fecha, String descripcion, int rutUsu) {
+	public EvEnfermeria(Long idEvolucionEnf, int idFicha, Date fecha, String descripcion, String rutUsu) {
 		this.idEvolucionEnf = idEvolucionEnf;
 		this.idFicha = idFicha;
 		this.fecha = fecha;

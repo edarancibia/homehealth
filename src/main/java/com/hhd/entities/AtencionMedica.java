@@ -31,7 +31,7 @@ public class AtencionMedica {
     private String indDomicilio;
 
     @Column(name = "rut_usu")
-    private int rutUsu;
+    private String rutUsu;
 
     @Column(name = "estado")
     private int estado;
@@ -103,9 +103,6 @@ public class AtencionMedica {
         return indDomicilio;
     }
 
-    public int getRutUsu() {
-        return rutUsu;
-    }
 
     public int getEstado() {
         return estado;
@@ -137,10 +134,6 @@ public class AtencionMedica {
 
     public void setIndDomicilio(String indDomicilio) {
         this.indDomicilio = indDomicilio;
-    }
-
-    public void setRutUsu(int rutUsu) {
-        this.rutUsu = rutUsu;
     }
 
     public void setEstado(int estado) {
@@ -251,8 +244,17 @@ public class AtencionMedica {
 		this.exmanes = exmanes;
 	}
 	
+	
+	public String getRutUsu() {
+		return rutUsu;
+	}
+
+	public void setRutUsu(String rutUsu) {
+		this.rutUsu = rutUsu;
+	}
+
 	public AtencionMedica(Long idAtencionMedica, int idFicha, Date fecha, String examenFisico, String anamnesis,
-			String diagPresuntivo, String indDomicilio, int rutUsu, int estado, int hta, int dld, int tbc, int epoc,
+			String diagPresuntivo, String indDomicilio, String rutUsu, int estado, int hta, int dld, int tbc, int epoc,
 			int lcfa, int acxfa, int acv, int depre, int ob, int dm, int ca, int cardio, String exmanes) {
 		this.idAtencionMedica = idAtencionMedica;
 		this.idFicha = idFicha;

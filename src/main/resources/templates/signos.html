@@ -47,15 +47,15 @@
 
   <script>
       $(document).ready(function(){
-        //var base_url = 'https://hhosorno.herokuapp.com/';
-        var base_url = 'http://localhost:8080/';
+        var base_url = 'https://hhosorno.herokuapp.com/';
+        //var base_url = 'http://localhost:8080/';
         var idficha = $('#txtHiddenFicha').val();
 
         $.ajax({
             type: 'get',
             url: base_url + 'signos/list/' + idficha,
             success: function(data){
-                $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th><th>Glasgow</th>");
+                $("#tabla-signos thead").append("<th>Fecha</th><th>FC</th><th>SAT. O2</th><th>P/A</th><th>Tº AX.</th><th>HGT</th><th>RESP.</th><th>Glasgow</th><th>Usuario</th>");
 				$('#tabla-signos tr').remove();
                 $.each(data, function(i, item){
 					$('<tr>').html(
@@ -65,6 +65,7 @@
                         "<td>"+data[i].pa+"</td>"+"<td>"+data[i].tax+"</td>"+
                         "<td>"+data[i].hgt+"</td>"+ "<td>"+data[i].resp+"</td>"+
                         "<td>"+data[i].glasgow+"</a></td>"+
+                        "<td>"+data[i].usuario+"</td>"+
                          "</tr>").appendTo('#tabla-signos');
                 });
             }

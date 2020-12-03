@@ -44,13 +44,14 @@
             type: 'get',
             url: base_url + 'proc-enf/list/' + idficha,
             success: function(data){
-                $("#tabla-proce thead").append("<th>Ficha</th><th>Fecha</th><th>Procedimiento</th>");
+                $("#tabla-proce thead").append("<th>Ficha</th><th>Fecha</th><th>Procedimiento</th><th>Usuario</th>");
 				        $('#tabla-proce tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
                         "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
+                        "<td>"+data[i].usuario+"</td>"+
                     "</tr>").appendTo('#tabla-proce');
                 });
             }

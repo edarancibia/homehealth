@@ -6,7 +6,7 @@
         <button type="button" data-target="#modalEvMedica" data-toggle="modal" id="btnAddEvMedica" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
         <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
 
-        <table class="table table-striped tabla-ev" id="tabla-evMedica">
+        <table class="table table-striped tabla-ev table-hover" id="tabla-evMedica">
             <thead></thead>
         </table>
     </div>
@@ -47,14 +47,15 @@
             type: 'get',
             url: base_url + 'evolucion-m/list/' + idficha,
             success: function(data){
-                $("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Evolución</th><th>Indicaciones</th>");
+                $("#tabla-evMedica thead").append("<th>Ficha</th><th>Fecha</th><th>Evolución</th><th>Indicaciones</th><th>Usuario</th>");
 				        $('#tabla-evMedica tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
                         "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
-                        "<td>"+data[i].indicaciones+"</td>"+
+                        "<td>"+data[i].indicaciones+"</td>" +
+                        "<td>"+data[i].usuario+"</td>"+
                     "</tr>").appendTo('#tabla-evMedica');
                 });
             }

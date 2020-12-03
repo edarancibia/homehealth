@@ -4,7 +4,10 @@
 <div class="container">
     <div class="container">
         <div class="card">
-          <div class="card-header">Pacientes</div>
+          <div class="card-header" style="
+          padding-top: 5px;
+          padding-bottom: 5px;
+      ">Pacientes</div>
           <div class="card-body">
               <div class="table-responsive">
                 <table id="tabla-pacientes" class="table table-hover">
@@ -21,8 +24,8 @@
 <script>
     $(document).ready(function(){
 
-        //var base_url = 'https://hhosorno.herokuapp.com/';
-        var base_url = 'http://localhost:8080/';
+        var base_url = 'https://hhosorno.herokuapp.com/';
+        //var base_url = 'http://localhost:8080/';
         $.ajax({
             type: 'get',
             url: base_url + 'paciente/list',

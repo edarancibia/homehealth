@@ -19,7 +19,7 @@ public class EvMedica {
     private String descripcion;
 
     @Column(name = "rut_usu")
-    private int rutUsu;
+    private String rutUsu;
     
     @Column(name = "id_ficha")
     private int idFicha;
@@ -39,10 +39,6 @@ public class EvMedica {
         return descripcion;
     }
 
-    public int getRutUsu() {
-        return rutUsu;
-    }
-
     public void setIdEvMedica(Long idEvMedica) {
         this.idEvMedica = idEvMedica;
     }
@@ -53,10 +49,6 @@ public class EvMedica {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public void setRutUsu(int rutUsu) {
-        this.rutUsu = rutUsu;
     }
 
     public int getIdFicha() {
@@ -74,8 +66,17 @@ public class EvMedica {
 	public void setIndicaciones(String indicaciones) {
 		this.indicaciones = indicaciones;
 	}
+	
 
-	public EvMedica(Long idEvMedica, Date fecha, String descripcion, int rutUsu, int idFicha, String indicaciones) {
+	public String getRutUsu() {
+		return rutUsu;
+	}
+
+	public void setRutUsu(String rutUsu) {
+		this.rutUsu = rutUsu;
+	}
+
+	public EvMedica(Long idEvMedica, Date fecha, String descripcion, String rutUsu, int idFicha, String indicaciones) {
 		super();
 		this.idEvMedica = idEvMedica;
 		this.fecha = fecha;

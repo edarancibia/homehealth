@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hhd.entities.Ficha;
@@ -24,6 +25,7 @@ import com.hhd.impl.PacienteServiceImpl;
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@SessionAttributes({"idusuario","role","username","rutusu"})
 @RequestMapping("/paciente")
 public class PacienteController {
 
