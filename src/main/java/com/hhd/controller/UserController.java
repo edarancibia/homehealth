@@ -67,6 +67,7 @@ public class UserController {
 			session.setAttribute("username", usu.getNombre()+' '+usu.getaPat()+ ' '+ usu.getaMat());
 			session.setAttribute("rutusu",usuDb.getRutNum());
 			model.addAttribute("rutusu", session.getAttribute("rutusu"));
+			model.addAttribute("username", session.getAttribute("username"));
 			LOG.info("usuario rut: " +session.getAttribute("rutusu"));
 			vista = "inicio";
 			return new ModelAndView(vista);
