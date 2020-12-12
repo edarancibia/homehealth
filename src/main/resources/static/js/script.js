@@ -300,7 +300,7 @@ $(document).ready(function(){
                     'indDomicilio'  : $('#txtIndicaciones').val(),
                     'rutUsu'        : $('#txtRutSession').val(),
                     'estado'        : 1,
-                    'exmenes'      : $('#txtExamenes').val(),
+                    'exmanes'      : $('#txtExamenes').val(),
                     'dm'            : dm,
                     'ca'            : ca,
                     'cardio'        : cardio,
