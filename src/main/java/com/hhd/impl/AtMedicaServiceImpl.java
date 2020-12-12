@@ -26,4 +26,19 @@ public class AtMedicaServiceImpl implements AtMedicaService {
 		return repository.findAtencionMedicaByIdFicha(idFicha);
 	}
 
+	@Override
+	public Map<String, Object> getDatosPacientePdf(int idficha) {
+		return repository.getDatosPacientePdf(idficha);
+	}
+
+	@Override
+	public Map<String, Object> getAntededentesPdf(int idficha) {
+		return repository.getAntededentesPdf(idficha);
+	}
+
+	@Override
+	public Map<String, Object> getMedicoPdf(int idficha) {
+		return repository.getMedicoPdf(idficha);
+	}
+
 }

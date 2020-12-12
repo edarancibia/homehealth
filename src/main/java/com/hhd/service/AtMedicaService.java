@@ -9,4 +9,7 @@ public interface AtMedicaService {
 
     public abstract AtencionMedica AddAtencion(AtencionMedica atMedica);
     public abstract AtencionMedica findAtencionMedicaByIdFicha(int idFicha);
+    Map<String, Object> getDatosPacientePdf(int idficha);
+    Map<String, Object> getAntededentesPdf(int idficha);
+    Map<String, Object> getMedicoPdf(int idficha);
 }

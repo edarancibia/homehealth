@@ -6,8 +6,6 @@ import com.hhd.entities.Paciente;
 import com.hhd.impl.FichaServiceImpl;
 import com.hhd.impl.IngresoServiceImpl;
 import com.hhd.impl.PacienteServiceImpl;
-import com.hhd.util.PdfService;
-import com.lowagie.text.DocumentException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -49,8 +47,6 @@ public class IngresoController {
     @Autowired
     public IngresoServiceImpl ingresoService;
     
-    @Autowired
-    public PdfService pdfService;
 
     @GetMapping("/")
     public ModelAndView index(HttpSession session){
@@ -73,21 +69,6 @@ public class IngresoController {
     	Ingreso newIngreso = ingresoService.addIngreso(ingreso);
     	return new ResponseEntity<Ingreso>(newIngreso,HttpStatus.OK);
     }
-    
-    @GetMapping("/export-pdf")
-    public void downloadPDFResource(HttpServletResponse response) {
-        try {
-            Path file = Paths.get(pdfService.generatePdf().getAbsolutePath());
-            if (Files.exists(file)) {
-                response.setContentType("application/pdf");
-                response.addHeader("Content-Disposition",
-                        "attachment; filename=" + file.getFileName());
-                Files.copy(file, response.getOutputStream());
-                response.getOutputStream().flush();
-            }
-        } catch (DocumentException | IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+
 
 }
