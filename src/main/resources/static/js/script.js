@@ -292,7 +292,7 @@ $(document).ready(function(){
                 }
     
                 var form_atencion = {
-                    'id_ficha'       : $('#txtHiddenFicha').val(),
+                    'idFicha'       : $('#txtHiddenFicha').val(),
                     'fecha'         : new Date(),
                     'anamnesis'     : $('#txtAnamnesis').val(),
                     'examenFisico'  : $('#txtExamen').val(),
