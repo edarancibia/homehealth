@@ -48,7 +48,7 @@
 
         $.ajax({
             type: 'get',
-            url: base_url + 'storage/files-list/'+25971875,
+            url: base_url + 'storage/files-list/'+$('#txtRut').val(),
             success: function(data){
                 console.log(data);
                 $("#tabla-files thead").append("<th>Fecha</th><th>Ficha</th><th>Nombre</th><th>Usuario</th>");
