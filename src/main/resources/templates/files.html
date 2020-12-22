@@ -45,10 +45,11 @@
         var base_url = 'https://hhosorno.herokuapp.com/';
         //var base_url = 'http://localhost:8080/';
         var idficha = $('#txtHiddenFicha').val();
+        var rutpac = $('#txtRut').val();
 
         $.ajax({
             type: 'get',
-            url: base_url + 'storage/files-list/'+$('#txtRut').val(),
+            url: base_url + 'storage/files-list/'+rutpac,
             success: function(data){
                 console.log(data);
                 $("#tabla-files thead").append("<th>Fecha</th><th>Ficha</th><th>Nombre</th><th>Usuario</th>");
