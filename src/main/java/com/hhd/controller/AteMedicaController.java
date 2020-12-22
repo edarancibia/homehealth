@@ -1,18 +1,27 @@
 package com.hhd.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,11 +35,20 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.hhd.entities.AtencionMedica;
 import com.hhd.entities.Ficha;
 import com.hhd.impl.AtMedicaServiceImpl;
 import com.hhd.util.PdfGenaratorUtil;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.codec.Base64.OutputStream;
+import java.io.FileOutputStream;
+import java.nio.file.FileSystems;
+
+import java.io.*;
+
+import static org.thymeleaf.templatemode.TemplateMode.HTML;
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -119,4 +137,62 @@ public class AteMedicaController {
 	    
 	    pdfGenaratorUtil.createPdf("pdf/ate-medica",data); 
 	}
+	
+	/*@GetMapping("/export2/{idficha}")
+	public void export2(@PathVariable int idficha) throws Exception {
+		AtencionMedica atencion = atMedService.findAtencionMedicaByIdFicha(idficha);
+		Map<String, Object> cab = atMedService.getDatosPacientePdf(idficha);
+		Map<String,String> data = new HashMap<String,String>();
+		Map<String, Object> med = atMedService.getMedicoPdf(idficha);
+		Map<String, Object> ante = atMedService.getAntededentesPdf(idficha);
+		
+		data.put("nombre",cab.get("nombre").toString());
+		data.put("rut", cab.get("rut").toString());
+		data.put("edad", cab.get("edad").toString());
+		data.put("prevision", cab.get("prevision").toString());
+		
+		data.put("hta", ante.get("hta").toString());
+		data.put("dld", ante.get("dld").toString());
+		data.put("tbc", ante.get("tbc").toString());
+		data.put("epoc", ante.get("epoc").toString());
+		data.put("lcfa", ante.get("lcfa").toString());
+		data.put("acxfa", ante.get("acxfa").toString());
+		data.put("acv", ante.get("acv").toString());
+		data.put("depre", ante.get("depre").toString());
+		data.put("ob", ante.get("ob").toString());
+		data.put("dm", ante.get("dm").toString());
+		data.put("ca", ante.get("ca").toString());
+		data.put("cardio", ante.get("cardio").toString());
+		
+		
+	    data.put("fecha", atencion.getFecha().toString().substring(0,10));
+	    data.put("examen", atencion.getExamenFisico());
+	    data.put("anam", atencion.getAnamnesis());
+	    data.put("diag", atencion.getDiagPresuntivo());
+	    data.put("indi", atencion.getIndDomicilio());
+	    data.put("examenes", atencion.getExmanes());
+	    data.put("medico", med.get("medico").toString());
+	    data.put("rutnum", med.get("rutnum").toString());
+	    
+	    OutputStream outputStream = new FileOutputStream("message.pdf");
+	    ITextRenderer renderer = new ITextRenderer();
+	    
+	    ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+	    templateResolver.setSuffix(".html");
+	    templateResolver.setTemplateMode("HTML");
+	     
+	    TemplateEngine templateEngine = new TemplateEngine();
+	    templateEngine.setTemplateResolver(templateResolver);
+	     
+	    Context context = new Context();
+	    context.setVariable("name", "Thomas");
+	    String html = templateEngine.process("prueba.html", context);
+	    renderer.setDocumentFromString(html);
+	    renderer.layout();
+	    renderer.createPDF(outputStream);
+	    outputStream.close();
+	    
+	}*/
+	
+
 }

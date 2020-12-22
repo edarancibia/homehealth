@@ -866,4 +866,34 @@ $(document).ready(function(){
             });
 
         });
+
+        // - - - - subir archivo a AWS S3 - - - - 
+        var file;
+        $('#btnFile').change(function(e){
+            //var file = e.target.files[0].name;
+            //$('#txtFileName').val(file);
+
+            file = URL.createObjectURL(e.target.files[0]);
+            //$("img").fadeIn("fast").attr('src',URL.createObjectURL(e.target.files[0]));
+            
+            $("#txtFileName").val(file);
+            $('#txtIdfichaFile').val($('#txtHiddenFicha').val());
+            $('#txtRutPacFile').val($('#txtRut').val());
+        });
+
+        $('#btnAddFile').on('click', function(e){
+            e.stopImmediatePropagation();
+            
+            $.ajax({
+                type: 'post',
+                url: base_url + 'storage/uploadFile',
+                data: {file: file,fileName: 'file'},
+                success: function(d){
+                    console.log('archivo subido: '+ d);
+                },
+                error: function(){
+                    console.log('error al subir archivo');
+                }
+            });
+        });
 });
