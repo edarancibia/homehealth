@@ -101,9 +101,9 @@ public class BucketController {
 		return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
 	}
 	
-	@GetMapping("/files-list/{rutpac}")
-	public @ResponseBody List<Map<String, Object>> getFilesByFicha(@PathVariable int rutpac){
-		List<Map<String, Object>> files = filesService.fingFilesByRutPac(rutpac);
+	@GetMapping("/files-list/{idficha}")
+	public @ResponseBody List<Map<String, Object>> getFilesByFicha(@PathVariable int idficha){
+		List<Map<String, Object>> files = filesService.fingFilesByRutPac(idficha);
 		return files;
 	}
 }

@@ -45,13 +45,12 @@
         var base_url = 'https://hhosorno.herokuapp.com/';
         //var base_url = 'http://localhost:8080/';
         var idficha = $('#txtHiddenFicha').val();
-        var rutpac = $('#txtRut').val();
 
         $.ajax({
             type: 'get',
-            url: base_url + 'storage/files-list/'+rutpac,
+            url: base_url + 'storage/files-list/'+idficha,
             success: function(data){
-                console.log(data);
+                console.log(data+ ' rut: '+ $('#txtRut').val());
                 $("#tabla-files thead").append("<th>Fecha</th><th>Ficha</th><th>Nombre</th><th>Usuario</th>");
 				$('#tabla-files tr').remove();
                 $.each(data, function(i, item){
@@ -62,6 +61,9 @@
                         "<td>"+data[i].usuario+"</td>"+
                          "</tr>").appendTo('#tabla-files');
                     });
+            },
+            error: function(){
+                console.log('error al cargar archivos');
             }
         });
     });

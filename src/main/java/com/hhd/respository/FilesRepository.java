@@ -17,8 +17,8 @@ public interface FilesRepository extends JpaRepository<File, Long> {
 	
 	@Query(value = "SELECT DATE_FORMAT(f.fecha,'%d-%m-%Y') as fecha, f.idficha ,f.descripcion ,f.url,\n"
 			+ "UPPER(CONCAT(u.ape_pat,' ',u.nombre)) as usuario \n"
-			+ "from files f ,usuario u \n"
-			+ "where  f.rut_pac = :rutpac and f.rut_usu = u.rutnum ",nativeQuery = true)
-	List<Map<String, Object>> fingFilesByRutPac(int rutpac);
+			+ "from files f ,usuario u, ficha f2  \n"
+			+ "where  f.rut_pac = f2.rut_pac and f.rut_usu = u.rutnum  and f.idficha = :idficha",nativeQuery = true)
+	List<Map<String, Object>> fingFilesByRutPac(int idficha);
 
 }
