@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,9 +43,10 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 	
-	@GetMapping("/")
-	public ModelAndView index(Model model, HttpSession session) {
+	@GetMapping("/{idficha}")
+	public ModelAndView index(@PathVariable int idficha,Model model, HttpSession session) {
 		ModelAndView mv = new ModelAndView("sendmail");
+		model.addAttribute("idficha",idficha);
         if(session.getAttribute("idusuario") == null) {
         	return new ModelAndView("login");
         }else {
