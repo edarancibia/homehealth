@@ -1,0 +1,38 @@
+<div th:include="cabecera-paciente.html" th:remove="tag"></div>
+
+<div class="container">
+    <div class="col-md-12 ancho-bordes">
+        <br/>
+        <p>Envío de Email</p>
+
+        <form class="login100-form validate-form" modelAttribute="attachmentEmail" th:action="@{/email/sendAttachmentEmail}" th:object="${mail}" method="POST" enctype="multipart/form-data">
+            <div class="form-group divs-form">
+                <div class="col-xs-2">
+                    <input type="file" name="attachment" maxlength="20" class="btn btn-small" id="btnFile">
+                    <input type="hidden" name="fileName" id="txtFileName">
+                    <input type="hidden" id="txtRutPacFile" name="rutpac">
+                    <input type="hidden" id="txtIdfichaFile" name="idficha">
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <div class="col-xs-1">
+                    <input type="to" name="to" id="to" class="form-control" placeholder="Destinatario" required>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group divs-form">
+                <textarea name="comment" id="comment" cols="15" rows="8" required class="form-control" placeholder="Mensaje..."></textarea>
+            </div>
+
+            <br/><br/>
+            <div th:if="${success != null}" class="alert alert-success" role="alert">Mensaje enviado exitosamente!</div>
+            <div class="container2">
+                <button type="submit" class="btn btn-small"><i class="fas fa-envelope-square"></i> Enviar</button>
+                <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

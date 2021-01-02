@@ -98,8 +98,16 @@ public class AteMedicaController {
 		return datos;
 	}
 	
-	@GetMapping("/export/{idficha}")
+	//@GetMapping("/export/{idficha}", produces = "application/pdf")
+	@GetMapping(value = "/export/{idficha}" , produces = "application/pdf")
 	public void export(@PathVariable int idficha) throws Exception {
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
+	    String filename = "atencion.pdf";
+	    headers.setContentDispositionFormData(filename, filename);
+	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+	    
 		AtencionMedica atencion = atMedService.findAtencionMedicaByIdFicha(idficha);
 		Map<String, Object> cab = atMedService.getDatosPacientePdf(idficha);
 		Map<String,String> data = new HashMap<String,String>();
@@ -133,7 +141,6 @@ public class AteMedicaController {
 	    data.put("examenes", atencion.getExmanes());
 	    data.put("medico", med.get("medico").toString());
 	    data.put("rutnum", med.get("rutnum").toString());
-	    
 	    
 	    pdfGenaratorUtil.createPdf("pdf/ate-medica",data); 
 	}
