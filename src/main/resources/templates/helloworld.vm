@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+    <img src="src/main/resources/static/img/logo1.png" style="width: 180px; height: 100px;" />
+  </div>
+Hello <b>$nombre!</b>  Welcome to Velocity!
+<h1> Hello User ${nombre}</h1>
+<br/>
+<br/>
+<p>Medico: $medico</p>
+This file is generated on : $genDateTime
+
+ <div class="container">
+    <strong><p style="text-align: center;">Atención Medica</p></strong>
+    <table border="0">
+      <tr>
+        <td colspan="2"><strong><p>Nombre:  $nombre</p></strong></td>
+        <td><strong><p>Rut:  ${rut}</p></strong></td>
+      </tr>
+      <tr>
+        <td><strong><p>Edad: ${edad}</p></strong></td>
+        <td><strong><p>Previsión: ${prevision}</p></strong></td>
+        <td><strong><p>Fecha: ${fecha}</p></strong></td>
+      </tr>
+    </table>
+
+    <br/>
+    <strong><p>Antecedentes Mórbidos</p></strong>
+    <br/>
+
+    <table border="1">
+      <tr>
+        <td>HTA</td>
+        <td>DLD</td>
+        <td>TBC</td>
+        <td>EPOC</td>
+        <td>LCFA</td>
+        <td>ACXFA</td>
+        <td>ACV</td>
+        <td>DEPRE.</td>
+        <td>OB</td>
+        <td>DM</td>
+        <td>CA</td>
+        <td>CARDIO.</td>
+      </tr>
+      <tr>
+        <td><p th:text="${hta}"></p></td>
+        <td><p th:text="${dld}"></p></td>
+        <td><p th:text="${tbc}"></p></td>
+        <td><p th:text="${epoc}"></p></td>
+        <td><p th:text="${lcfa}"></p></td>
+        <td><p th:text="${acxfa}"></p></td>
+        <td><p th:text="${acv}"></p></td>
+        <td><p th:text="${depre}"></p></td>
+        <td><p th:text="${ob}"></p></td>
+        <td><p th:text="${dm}"></p></td>
+        <td><p th:text="${ca}"></p></td>
+        <td><p th:text="${cardio}"></p></td>
+      </tr>
+    </table>
+    
+
+    <strong><p>Anamnesis</p></strong>
+    <p th:text="${anam}"></p>
+
+    <strong><p>Exámen Físico</p></strong>
+    <p th:text="${examen}"></p>
+
+    <strong><p>Diagnóstico Presuntivo</p></strong>
+    <p th:text="${diag}"></p>
+
+    <strong><p>Indicaciones</p></strong>
+    <p th:text="${indi}"></p>
+
+    <strong><p>Solicitud de exámenes</p></strong>
+    <p th:text="${examenes}"></p>
+
+    <br/>
+    <hr/>
+
+    <div style="text-align: center;">
+      <p th:text="${medico}"></p>
+      <p th:text="${rutnum}"></p>
+    </div>
+
+  </div>
+</body>
+</html>

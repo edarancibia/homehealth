@@ -250,7 +250,7 @@ $(document).ready(function(){
 
         var r = confirm("¿Confirma que desea guardar la atenciòn?");
         if (r == true) {
-            if($('#txtAnamnesis').val() == '' || $('#txtExamen').val() == '' || $('#txtDiagnostico').val() == ''){
+            if($('#txtAnamnesis').val() == '' || $('#txtExamen').val() == '' || $('#txtDiagnostico').val() == '' || $('#txtExamenes').val() == ''){
                 alert('Debe completar los datos del formulario!')
             }else{
                 var dm,ca,cardio,hta,dld,tbc,epoc,lcfa,acxfa,acv,depre,ob;

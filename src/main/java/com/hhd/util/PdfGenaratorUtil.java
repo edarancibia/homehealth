@@ -3,6 +3,7 @@ package com.hhd.util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
@@ -15,12 +16,22 @@ import org.thymeleaf.context.Context;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.lowagie.text.DocumentException;
+import com.hhd.impl.AtMedicaServiceImpl;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
+
+import java.io.ByteArrayOutputStream;
 
 @Component
 public class PdfGenaratorUtil {
+	
+	@Autowired
+	public AtMedicaServiceImpl atMedService;
 
 	@Autowired
 	private TemplateEngine templateEngine;
+	
 	public void createPdf(String templateName, Map map) throws Exception {
 		Assert.notNull(templateName, "The templateName can not be null");
 		Context ctx = new Context();
@@ -53,5 +64,46 @@ public class PdfGenaratorUtil {
 	                } catch (IOException e) { /*ignore*/ }
 	            }
 	        }
+	}
+	
+	public ByteArrayOutputStream generatePdf(String html) {
+
+		String pdfFilePath = "";
+		PdfWriter pdfWriter = null;
+
+		// create a new document
+		Document document = new Document();
+		try {
+
+			document = new Document();
+			// document header attributes
+			document.addAuthor("Kinns");
+			document.addAuthor("Kinns123");
+			document.addCreationDate();
+			document.addProducer();
+			document.addCreator("kinns123.github.io");
+			document.addTitle("HTML to PDF using itext");
+			document.setPageSize(PageSize.LETTER);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			PdfWriter.getInstance(document, baos);
+
+			// open document
+			document.open();
+
+			XMLWorkerHelper xmlWorkerHelper = XMLWorkerHelper.getInstance();
+			xmlWorkerHelper.getDefaultCssResolver(true);
+			xmlWorkerHelper.parseXHtml(pdfWriter, document, new StringReader(
+					html));
+			// close the document
+			document.close();
+			System.out.println("PDF generated successfully");
+
+			return baos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 }

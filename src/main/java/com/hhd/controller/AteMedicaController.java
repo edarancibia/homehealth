@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -45,6 +46,20 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.codec.Base64.OutputStream;
 import java.io.FileOutputStream;
 import java.nio.file.FileSystems;
+import java.time.LocalDateTime;
+
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 import java.io.*;
 
@@ -98,108 +113,77 @@ public class AteMedicaController {
 		return datos;
 	}
 	
-	//@GetMapping("/export/{idficha}", produces = "application/pdf")
-	@GetMapping(value = "/export/{idficha}" , produces = "application/pdf")
-	public void export(@PathVariable int idficha) throws Exception {
+	
+	@GetMapping("/export/{idficha}")
+	HttpEntity<byte[]> createPdf(
+            @PathVariable("idficha") String fileName, HttpServletResponse response) throws IOException {
 
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	    String filename = "atencion.pdf";
-	    headers.setContentDispositionFormData(filename, filename);
-	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-	    
+
+		/* first, get and initialize an engine */
+		VelocityEngine ve = new VelocityEngine();
+
+		/* next, get the Template */
+		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+		ve.setProperty("classpath.resource.loader.class",
+				ClasspathResourceLoader.class.getName());
+		ve.init();
+		Template t = ve.getTemplate("templates/pdf/pdf-ate-medica.vm", "UTF-8");
+		/* create a context and add data */
+		VelocityContext context = new VelocityContext();
+		
+		int idficha = Integer.parseInt(fileName);
 		AtencionMedica atencion = atMedService.findAtencionMedicaByIdFicha(idficha);
 		Map<String, Object> cab = atMedService.getDatosPacientePdf(idficha);
-		Map<String,String> data = new HashMap<String,String>();
 		Map<String, Object> med = atMedService.getMedicoPdf(idficha);
 		Map<String, Object> ante = atMedService.getAntededentesPdf(idficha);
 		
-		data.put("nombre",cab.get("nombre").toString());
-		data.put("rut", cab.get("rut").toString());
-		data.put("edad", cab.get("edad").toString());
-		data.put("prevision", cab.get("prevision").toString());
+		context.put("nombre",cab.get("nombre").toString());
+		context.put("rut", cab.get("rut").toString());
+		context.put("edad", cab.get("edad").toString());
+		context.put("prevision", cab.get("prevision").toString());
 		
-		data.put("hta", ante.get("hta").toString());
-		data.put("dld", ante.get("dld").toString());
-		data.put("tbc", ante.get("tbc").toString());
-		data.put("epoc", ante.get("epoc").toString());
-		data.put("lcfa", ante.get("lcfa").toString());
-		data.put("acxfa", ante.get("acxfa").toString());
-		data.put("acv", ante.get("acv").toString());
-		data.put("depre", ante.get("depre").toString());
-		data.put("ob", ante.get("ob").toString());
-		data.put("dm", ante.get("dm").toString());
-		data.put("ca", ante.get("ca").toString());
-		data.put("cardio", ante.get("cardio").toString());
+		context.put("hta", ante.get("hta").toString());
+		context.put("dld", ante.get("dld").toString());
+		context.put("tbc", ante.get("tbc").toString());
+		context.put("epoc", ante.get("epoc").toString());
+		context.put("lcfa", ante.get("lcfa").toString());
+		context.put("acxfa", ante.get("acxfa").toString());
+		context.put("acv", ante.get("acv").toString());
+		context.put("depre", ante.get("depre").toString());
+		context.put("ob", ante.get("ob").toString());
+		context.put("dm", ante.get("dm").toString());
+		context.put("ca", ante.get("ca").toString());
+		context.put("cardio", ante.get("cardio").toString());
 		
 		
-	    data.put("fecha", atencion.getFecha().toString().substring(0,10));
-	    data.put("examen", atencion.getExamenFisico());
-	    data.put("anam", atencion.getAnamnesis());
-	    data.put("diag", atencion.getDiagPresuntivo());
-	    data.put("indi", atencion.getIndDomicilio());
-	    data.put("examenes", atencion.getExmanes());
-	    data.put("medico", med.get("medico").toString());
-	    data.put("rutnum", med.get("rutnum").toString());
-	    
-	    pdfGenaratorUtil.createPdf("pdf/ate-medica",data); 
+		context.put("fecha", atencion.getFecha().toString().substring(0,10));
+		context.put("examen", atencion.getExamenFisico());
+		context.put("anam", atencion.getAnamnesis());
+		context.put("diag", atencion.getDiagPresuntivo());
+		context.put("indi", atencion.getIndDomicilio());
+		context.put("examenes", atencion.getExmanes());
+		context.put("medico", med.get("medico").toString());
+		context.put("rutnum", med.get("rutnum").toString());
+		
+		/* now render the template into a StringWriter */
+		StringWriter writer = new StringWriter();
+		t.merge(context, writer);
+		/* show the World */
+		System.out.println(writer.toString());
+		
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+		baos = pdfGenaratorUtil.generatePdf(writer.toString());
+
+		HttpHeaders header = new HttpHeaders();
+	    header.setContentType(MediaType.APPLICATION_PDF);
+	    header.set(HttpHeaders.CONTENT_DISPOSITION,
+	                   "attachment; filename=" + fileName.replace(" ", "_"));
+	    header.setContentLength(baos.toByteArray().length);
+
+	    return new HttpEntity<byte[]>(baos.toByteArray(), header);
+
 	}
-	
-	/*@GetMapping("/export2/{idficha}")
-	public void export2(@PathVariable int idficha) throws Exception {
-		AtencionMedica atencion = atMedService.findAtencionMedicaByIdFicha(idficha);
-		Map<String, Object> cab = atMedService.getDatosPacientePdf(idficha);
-		Map<String,String> data = new HashMap<String,String>();
-		Map<String, Object> med = atMedService.getMedicoPdf(idficha);
-		Map<String, Object> ante = atMedService.getAntededentesPdf(idficha);
-		
-		data.put("nombre",cab.get("nombre").toString());
-		data.put("rut", cab.get("rut").toString());
-		data.put("edad", cab.get("edad").toString());
-		data.put("prevision", cab.get("prevision").toString());
-		
-		data.put("hta", ante.get("hta").toString());
-		data.put("dld", ante.get("dld").toString());
-		data.put("tbc", ante.get("tbc").toString());
-		data.put("epoc", ante.get("epoc").toString());
-		data.put("lcfa", ante.get("lcfa").toString());
-		data.put("acxfa", ante.get("acxfa").toString());
-		data.put("acv", ante.get("acv").toString());
-		data.put("depre", ante.get("depre").toString());
-		data.put("ob", ante.get("ob").toString());
-		data.put("dm", ante.get("dm").toString());
-		data.put("ca", ante.get("ca").toString());
-		data.put("cardio", ante.get("cardio").toString());
-		
-		
-	    data.put("fecha", atencion.getFecha().toString().substring(0,10));
-	    data.put("examen", atencion.getExamenFisico());
-	    data.put("anam", atencion.getAnamnesis());
-	    data.put("diag", atencion.getDiagPresuntivo());
-	    data.put("indi", atencion.getIndDomicilio());
-	    data.put("examenes", atencion.getExmanes());
-	    data.put("medico", med.get("medico").toString());
-	    data.put("rutnum", med.get("rutnum").toString());
-	    
-	    OutputStream outputStream = new FileOutputStream("message.pdf");
-	    ITextRenderer renderer = new ITextRenderer();
-	    
-	    ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-	    templateResolver.setSuffix(".html");
-	    templateResolver.setTemplateMode("HTML");
-	     
-	    TemplateEngine templateEngine = new TemplateEngine();
-	    templateEngine.setTemplateResolver(templateResolver);
-	     
-	    Context context = new Context();
-	    context.setVariable("name", "Thomas");
-	    String html = templateEngine.process("prueba.html", context);
-	    renderer.setDocumentFromString(html);
-	    renderer.layout();
-	    renderer.createPDF(outputStream);
-	    outputStream.close();
-	    
-	}*/
-	
 
+	
 }

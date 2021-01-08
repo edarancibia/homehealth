@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+  <style>
+    @page {
+      size: letter;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  </style>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
+  <div>
+    <img src="src/main/resources/static/img/logo1.png" style="width: 180px; height: 100px;" />
+  </div>
+
+  <div>
+    <div style="text-align: center;">
+        <p><strong><u>ATENCION MEDICA</u></strong></p>
+    </div>
+    <br/>
+    <table border="0" style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td colspan="2"><p>Nombre: $nombre</p></td>
+        <td><p>Rut: ${rut}</p></td>
+      </tr>
+      <tr>
+        <td><p>Edad: ${edad}</p></td>
+        <td><p>Previsión: ${prevision}</p></td>
+        <td><p>Fecha: ${fecha}</p></td>
+      </tr>
+    </table>
+
+    <br/>
+    <div>
+        <strong><p>Antecedentes Mórbidos</p></strong>
+    </div>
+
+    <br/>
+
+    <table border="0">
+      <tr>
+        <td>HTA</td>
+        <td>DLD</td>
+        <td>TBC</td>
+        <td>EPOC</td>
+        <td>LCFA</td>
+        <td>ACXFA</td>
+        <td>ACV</td>
+        <td>DEPRE.</td>
+        <td>OB</td>
+        <td>DM</td>
+        <td>CA</td>
+        <td>CARDIO.</td>
+      </tr>
+      <tr>
+        <td><p>${hta}</p></td>
+        <td><p>${dld}</p></td>
+        <td><p>${tbc}</p></td>
+        <td><p>${epoc}</p></td>
+        <td><p>${lcfa}</p></td>
+        <td><p>${acxfa}</p></td>
+        <td><p>${acv}</p></td>
+        <td><p>${depre}</p></td>
+        <td><p>${ob}</p></td>
+        <td><p>${dm}</p></td>
+        <td><p>${ca}</p></td>
+        <td><p>${cardio}</p></td>
+      </tr>
+    </table>
+    
+    <div>
+        <br/>
+        <strong><p>Anamnesis</p></strong>
+        <p>${anam}</p>
+
+        <strong><p>Exámen Físico</p></strong>
+        <p>${examen}</p>
+
+        <strong><p>Diagnóstico Presuntivo</p></strong>
+        <p>${diag}</p>
+
+        <strong><p>Indicaciones</p></strong>
+        <p>${indi}</p>
+
+        <strong><p>Solicitud de exámenes</p></strong>
+        <p>${examenes}</p>
+
+    </div>
+
+    <div style="text-align: center;">
+        <br/><br/>
+      <p>Dr. ${medico}</p>
+      <p>${rutnum}</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

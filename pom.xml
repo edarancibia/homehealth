@@ -58,15 +58,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
-		<!--  <dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
-		    <version>1.6.0</version>
-		</dependency>-->
-		
+		</dependency>		
 
      <!-- flying saucer pdf -->  
         <dependency>
@@ -74,6 +66,26 @@
             <artifactId>flying-saucer-pdf</artifactId>
             <version>9.1.4</version>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itextpdf</artifactId>
+		    <version>5.5.8</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.itextpdf.tool</groupId>
+			<artifactId>xmlworker</artifactId>
+			<version>5.5.10</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+        
         
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
