@@ -743,42 +743,47 @@ $(document).ready(function(){
                     
                         var r = confirm("¿Confirma que desea guardar la epicrisis? Al hacerlo dará de alta al paciente.");
                         if (r == true) {
-                            if($())
-                            var form_epicrisis = {
-                                'idFicha'      : $('#txtHiddenFicha').val(),
-                                'fecha'        : new Date(),
-                                'resumen'      : $('#txtResumen').val(),
-                                'indicaciones' : $('#txtIndicaciones').val(),
-                                'rutUsu'       : $('#txtRutSession').val()
-                            }
-                    
-                            $.ajax({
-                                type: 'post',
-                                url: base_url + 'epicrisis-med/add',
-                                contentType: 'application/json; charset=utf-8',
-                                dataType: 'json',
-                                data: JSON.stringify(form_epicrisis),
-                                success: function(){
-                                    $('#txtResumen').attr('disabled', true);
-                                    $('#txtIndicaciones').attr('disabled', true);
-                                    $('#btnGuardaEpicrisisM').attr('disabled', true);
-                                },
-                                error: function(){
-                                    console.log('error al guardar epicrisis');
+                            if($('#txtResumen').val() == '' || $('#txtDiagEpi').val() == '' || $('#txtIndicaciones').val() == ''){
+                                alert('Debe completar todos los campos!');
+                            }else{
+                                var form_epicrisis = {
+                                    'idFicha'      : $('#txtHiddenFicha').val(),
+                                    'fecha'        : new Date(),
+                                    'resumen'      : $('#txtResumen').val(),
+                                    'indicaciones' : $('#txtIndicaciones').val(),
+                                    'diagnostico'  : $('#txtDiagEpi').val(),
+                                    'rutUsu'       : $('#txtRutSession').val()
                                 }
-                            }).done(function(){
-                                //DA DE ALTA AL PACIENTE CERRANDO LA FICHA
+                        
                                 $.ajax({
-                                    type: 'put',
-                                    url: base_url + 'epicrisis-med/alta/'+$('#txtHiddenFicha').val(),
+                                    type: 'post',
+                                    url: base_url + 'epicrisis-med/add',
+                                    contentType: 'application/json; charset=utf-8',
+                                    dataType: 'json',
+                                    data: JSON.stringify(form_epicrisis),
                                     success: function(){
-                                        console.log('dado de alta');
+                                        $('#txtResumen').attr('disabled', true);
+                                        $('#txtIndicaciones').attr('disabled', true);
+                                        $('#txtDiagEpi').attr('disabled', true);
+                                        $('#btnGuardaEpicrisisM').attr('disabled', true);
                                     },
                                     error: function(){
-                                        console.log('error al cerrar ficha');
+                                        console.log('error al guardar epicrisis');
                                     }
+                                }).done(function(){
+                                    //DA DE ALTA AL PACIENTE CERRANDO LA FICHA
+                                    $.ajax({
+                                        type: 'put',
+                                        url: base_url + 'epicrisis-med/alta/'+$('#txtHiddenFicha').val(),
+                                        success: function(){
+                                            console.log('dado de alta');
+                                        },
+                                        error: function(){
+                                            console.log('error al cerrar ficha');
+                                        }
+                                    });
                                 });
-                            });
+                            }
                         }    
                     });
 

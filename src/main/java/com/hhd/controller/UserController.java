@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hhd.entities.Usuario;
 import com.hhd.impl.UsuarioServiceImpl;
+import com.hhd.util.SendMailService;
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -31,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	public UsuarioServiceImpl usuarioService;
+	
+	@Autowired
+	public SendMailService mailService;
 
 	private static final Log LOG = LogFactory.getLog(UserController.class);
 	
@@ -109,4 +113,38 @@ public class UserController {
 	    }
 	    return new ModelAndView("login") ;  //Where you go after logout here.
 	}
+	
+	@GetMapping("/forgot-pass")
+	public ModelAndView recuperarPass(Model model,@ModelAttribute(name="usuario") Usuario usuario,@RequestParam(name="errormail",required = false)String errormail,
+			@RequestParam(name="success",required = false)String success) {
+		ModelAndView mv = new ModelAndView("recuperar-pass");
+		model.addAttribute("success",success);
+		model.addAttribute("errormail",errormail);
+		return mv;
+	}
+	
+	@PostMapping("/send-pass")
+	public ModelAndView sendPass(@ModelAttribute(name = "usuario") Usuario usuario,
+			Model model,@RequestParam("email") String email) {
+		ModelAndView mv = new ModelAndView("recuperar-pass");
+		Usuario userBd = usuarioService.findByEmail(email);
+		
+		if(userBd == null) {
+			model.addAttribute("errormail","el correo no es valido");
+			return mv;
+		}else {
+			//envia correo al invitado
+			String message = "Hola!, tu contraseña es: "
+			+ userBd.getClave() +
+					". Para iniciar sesión click aqui: \n" + "https://hhosorno.herokuapp.com";
+			String subject = "Recuperar contraseña Home Health";
+	        mailService.sendMail("ficha.hho@gmail.com",email,subject,message);
+	        model.addAttribute("result", 1);
+	        model.addAttribute("success","Contraseña enviada exitosamente");
+	        return mv;
+	        
+		}
+		
+	}
+	
 }

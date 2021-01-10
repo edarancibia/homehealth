@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Ficha de Hospitalización Docimiliaria - Login</title>
+    <title>Ficha de Hospitalizaciòn Docimiliaria - Registro de Usuario</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -79,41 +79,32 @@
 			<div class="login100-more" style="background-image: url('/img/tarjetas2.jpg');"></div>
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50" style="padding-top: 30px;">
-				<form class="login100-form validate-form" th:action="@{/home}" th:object="${usuario}" method="POST">
+				<form class="login100-form validate-form" th:action="@{/send-pass}" method="POST" >
 					<span class="login100-form-title p-b-59" style="padding-bottom: 30px;">
-						Ingreso al sistema
+						Enviar contraseña por Email
 					</span>
-                    
-					<div class="wrap-input100 validate-input text-login-botom" data-validate="Username is required">
+
+					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Email es requerido: ex@abc.xyz">
 						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" th:field="*{usuario.email}" id="txtEmail" name="email" placeholder="Email..." required>
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input text-login-botom" data-validate = "Password es requerido">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="clave" placeholder="*************">
-						<span class="focus-input100"></span>
-					</div>
 
-                    <div th:if="${errormail != null}" class="alert alert-danger" role="alert">Usuario o contraseña incorrectos</div>
-
+					<div th:if="${errormail != null}" class="alert alert-danger" role="alert">El correo no es válido</div>
+					<div th:if="${success != null}" class="alert alert-success" role="alert">Contraseña enviada exitosamente!</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Iniciar Sesión
+							<button type="submit" class="login100-form-btn">
+								Enviar
 							</button>
 						</div>
 
-						<a th:href="@{'/register/'}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-							Registrarse
+						<a th:href="@{'/'}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							Ir a iniciar sesión
 							<i class="fas fa-sign-in-alt"></i>
-                        </a>
-                        
-                        <a th:href="@{'/forgot-pass/'}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
-							Olvidó su contraseña?
 						</a>
 					</div>
 				</form>

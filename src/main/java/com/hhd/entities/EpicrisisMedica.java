@@ -30,6 +30,9 @@ public class EpicrisisMedica {
 	@Column(name = "indicaciones")
 	private String indicaciones;
 	
+	@Column(name = "diagnostico")
+	private String diagnostico;
+	
 	@Column(name = "rut_usu")
 	private String rutUsu;
 
@@ -81,12 +84,22 @@ public class EpicrisisMedica {
 		this.rutUsu = rutUsu;
 	}
 
-	public EpicrisisMedica(Long idEpicrisis, int idFicha, Date fecha, String resumen, String indicaciones, String rutUsu) {
+	public String getDiagnostico() {
+		return diagnostico;
+	}
+
+	public void setDiagnostico(String diagnostico) {
+		this.diagnostico = diagnostico;
+	}
+
+	public EpicrisisMedica(Long idEpicrisis, int idFicha, Date fecha, String resumen, String indicaciones,
+			String diagnostico, String rutUsu) {
 		this.idEpicrisis = idEpicrisis;
 		this.idFicha = idFicha;
 		this.fecha = fecha;
 		this.resumen = resumen;
 		this.indicaciones = indicaciones;
+		this.diagnostico = diagnostico;
 		this.rutUsu = rutUsu;
 	}
 

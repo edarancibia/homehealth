@@ -15,7 +15,7 @@
         <textarea id="txtIndicaciones" cols="30" rows="8" class="form-control input-text" style="height: 50%;"></textarea>
         <div class="container2">
             <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
-            <button id="btnDiagIngreso" class="btn btn-small">Imprimir</button>
+            <a th:href="@{'/epicrisis-med/export/'+ ${idficha}}" type="button" target="_blank" class="btn btn-small">Imprimir <i class="fas fa-file-pdf"></i></a>
             <button id="btnGuardaEpicrisisM" class="btn btn-main">Guardar Epicrisis</button> 
         </div>
     </div>
