@@ -5,6 +5,7 @@
         <p>Evolución de Enfermería</p>
         <button type="button" data-target="#modalEvEnfermeria" data-toggle="modal" id="btnAddEvEnfermeria" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
         <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
+        <a th:href="@{'/evolucion-e/export/'+ ${idficha}}" type="button" target="_blank" class="btn btn-small">Imprimir <i class="fas fa-file-pdf"></i></a>
 
         <table class="table table-striped tabla-ev" id="tabla-evEnfermeria">
             <thead></thead>

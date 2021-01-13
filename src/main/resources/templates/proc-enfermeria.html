@@ -2,9 +2,10 @@
 
 <div class="container">
     <div class="col-md-12 ancho-bordes">
-        <p>Procedimientos de Enfermerìa</p>
+        <p>Procedimientos de Enfermería</p>
         <button type="button" data-target="#modalProce" data-toggle="modal" id="btnAddProce" class="btn btn-small"><i class="fas fa-plus-circle"></i> Agregar</button>
-        <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menù</a>
+        <a th:href="@{'/menu/'+ ${idficha}}" class="btn btn-small"><i class="fas fa-undo-alt"></i> Volver al Menú</a>
+        <a th:href="@{'/proc-enf/export/'+ ${idficha}}" type="button" target="_blank" class="btn btn-small">Imprimir <i class="fas fa-file-pdf"></i></a>
 
         <table class="table table-striped tabla-ev" id="tabla-proce">
             <thead></thead>

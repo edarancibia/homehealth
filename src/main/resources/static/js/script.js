@@ -38,6 +38,30 @@ $(document).ready(function(){
             $("#btnGuardaIngreso").attr("disabled", true);
             $('#txtRutIngreso').focus();
         }else{
+            var rut = $('#txtRutIngreso').val();
+            $.ajax({
+                type: 'get',
+                url: base_url + 'paciente/verifica-paciente/'+rut,
+                success: function(data){
+                    $('#txtNombreIngreso').val(data.nombre);
+                    $('#txtApatIngreso').val(data.aPat);
+                    $('#txtAmatIngreso').val(data.aMat);
+                    $('#txtDireccionIngreso').val(data.direccion);
+                    var fnac = data.fechaNac;
+                    $('#hiddennac').val(fnac.substring(0,10)); 
+                    $('#txtFnacIngreso').hide();
+                    $('#hiddennac').show();
+                    $('#hiddennac').attr("disabled", true);
+
+                    $('#txtNombreIngreso').attr("disabled", true);
+                    $('#txtApatIngreso').attr("disabled", true);
+                    $('#txtAmatIngreso').attr("disabled", true);
+                },
+                error: function(){
+                    console.log('paciente no existe pero el rut es valido');
+                }
+            });
+
             $("#btnGuardaIngreso").attr("disabled", false);
         }
     });

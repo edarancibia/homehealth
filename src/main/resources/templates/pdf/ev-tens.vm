@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+  <style>
+    @page {
+      size: letter;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  </style>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
+  <div>
+    <img src="src/main/resources/static/img/logo1.png" style="width: 180px; height: 100px;" />
+  </div>
+
+  <div>
+    <div style="text-align: center;">
+        <p><strong><u>EVOLUCIÓN TENS</u></strong></p>
+    </div>
+    <br/>
+    <table border="0" style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td colspan="2"><p>Nombre: $nombre</p></td>
+        <td><p>Rut: ${rut}</p></td>
+      </tr>
+      <tr>
+        <td><p>Edad: ${edad}</p></td>
+        <td><p>Previsión: ${prevision}</p></td>
+        <td><p>Fecha: ${fecha}</p></td>
+      </tr>
+    </table>
+
+    <br/>
+    
+    <div>
+        <br/> <br/>
+        <div>
+        <table border="0">
+            <tr>
+                <th>Fecha</th>
+                <th>Evolución</th>
+                <th>Profesional</th>
+            </tr>
+            #foreach( $evo in $evoluciones )
+                <tr>
+                    <td>$evo.fecha</td>
+                    <td>$evo.descripcion</td>
+                    <td>$evo.usuario</td>
+                </tr>
+            #end
+        </table>
+    </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

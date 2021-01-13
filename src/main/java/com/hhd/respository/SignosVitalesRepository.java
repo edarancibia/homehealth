@@ -12,8 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SignosVitalesRepository extends JpaRepository<SignosVitales, Long> {
      
-     @Query(value = "select DATE_FORMAT(s.fecha,'%d-%m-%Y %H:%i') as fecha,fc,sat,pa,tax,hgt,resp, glasgow \r\n"
-     		+ "from signos_vitales s \r\n"
-     		+ "where s.id_ficha = :idFicha order by s.fecha  desc", nativeQuery = true)
+     @Query(value = "select DATE_FORMAT(s.fecha,'%d-%m-%Y %H:%i') as fecha,fc,sat,pa,tax,hgt,resp, glasgow, \r\n"
+    		+ "concat(u.ape_pat,' ',u.nombre) as usuario \r\n"
+     		+ "from signos_vitales s, usuario u \r\n"
+     		+ "where s.id_ficha = :idFicha and CONVERT(s.rut_usu USING utf8) = u.rutnum order by s.fecha  desc", nativeQuery = true)
      List<Map<String, Object>> findSignosVitalesByIdFicha(Long idFicha);
 }

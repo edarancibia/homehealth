@@ -37,7 +37,7 @@ public class SignosVitales {
     private String hgt;
 
     @Column(name = "rut_usu")
-    private int rutUsu; //usuario responsable
+    private String rutUsu; //usuario responsable
     
     @Column(name = "resp")
     private String resp;
@@ -77,7 +77,7 @@ public class SignosVitales {
         return hgt;
     }
 
-    public int getRutUsu() {
+    public String getRutUsu() {
         return rutUsu;
     }
 
@@ -113,7 +113,7 @@ public class SignosVitales {
         this.hgt = hgt;
     }
 
-    public void setRutUsu(int rutUsu) {
+    public void setRutUsu(String rutUsu) {
         this.rutUsu = rutUsu;
     }
 
@@ -143,7 +143,7 @@ public class SignosVitales {
 	}
 
 	public SignosVitales(Long idSignos, Long idAtencionEnf, Long idFicha, Date fecha, String fc, String sat, String pa,
-			String tax, String hgt, int rutUsu, String resp, String glasgow) {
+			String tax, String hgt, String rutUsu, String resp, String glasgow) {
 		this.idSignos = idSignos;
 		this.idAtencionEnf = idAtencionEnf;
 		this.idFicha = idFicha;

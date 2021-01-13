@@ -17,6 +17,6 @@ public interface ProcEnfermeriaRepository extends JpaRepository<ProcEnfermeria, 
 	   @Query(value = "select e.id_ficha, DATE_FORMAT(e.fecha,'%d-%m-%Y %H:%i') as fecha,e.descripcion, \r\n"
 			   + "concat(u.ape_pat,' ',u.nombre) as usuario \r\n"
 	     		+ "from procedimientos_enf e, usuario u \r\n"
-	     		+ "where e.id_ficha = :idFicha order and e.rut_usu = u.rutnum by e.fecha  desc", nativeQuery = true)
+	     		+ "where e.id_ficha = :idFicha and e.rut_usu = u.rutnum order by e.fecha  desc", nativeQuery = true)
 	     List<Map<String, Object>> findProcedimientoByIdFicha(Long idFicha);
 }

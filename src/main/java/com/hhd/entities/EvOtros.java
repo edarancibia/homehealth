@@ -28,7 +28,7 @@ public class EvOtros {
 	private String descripcion;
 	
 	@Column(name = "rut_usu")
-	private int rutUsu;
+	private String rutUsu;
 
 	public Long getIdEvolucion() {
 		return idEvolucion;
@@ -62,15 +62,15 @@ public class EvOtros {
 		this.descripcion = descripcion;
 	}
 
-	public int getRutUsu() {
+	public String getRutUsu() {
 		return rutUsu;
 	}
 
-	public void setRutUsu(int rutUsu) {
+	public void setRutUsu(String rutUsu) {
 		this.rutUsu = rutUsu;
 	}
 
-	public EvOtros(Long idEvolucion, int idFicha, Date fecha, String descripcion, int rutUsu) {
+	public EvOtros(Long idEvolucion, int idFicha, Date fecha, String descripcion, String rutUsu) {
 		this.idEvolucion = idEvolucion;
 		this.idFicha = idFicha;
 		this.fecha = fecha;
