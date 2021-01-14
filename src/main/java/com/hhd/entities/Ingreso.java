@@ -58,7 +58,7 @@ public class Ingreso {
     private String planTto4;
 
     @Column(name = "rut_usu")
-    private int rutUsu;
+    private String rutUsu;
 
     public Long getIdIngreso() {
         return idIngreso;
@@ -180,17 +180,17 @@ public class Ingreso {
         this.planTto4 = planTto4;
     }
 
-    public int getRutUsu() {
+    public String getRutUsu() {
         return rutUsu;
     }
 
-    public void setRutUsu(int rutUsu) {
+    public void setRutUsu(String rutUsu) {
         this.rutUsu = rutUsu;
     }
 
     public Ingreso(Long idIngreso, int idFicha, Date fecha, int edad, String alergias, String telefonoUsuario,
 			String telefonoCuidador, int rutMedDeriva, String diag1, String diag2, String diag3, String diag4,
-			String planTto1, String planTto2, String planTto3, String planTto4, int rutUsu) {
+			String planTto1, String planTto2, String planTto3, String planTto4, String rutUsu) {
 		super();
 		this.idIngreso = idIngreso;
 		this.idFicha = idFicha;
