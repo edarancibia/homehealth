@@ -22,7 +22,7 @@ public class Ficha {
     private int estado;
     
     @Column(name = "rut_med")
-    private int rutMed;
+    private String rutMed;
 
     public Long getIdFicha() {
         return idFicha;
@@ -57,17 +57,17 @@ public class Ficha {
     }
     
 
-    public int getRutMed() {
+    public String getRutMed() {
 		return rutMed;
 	}
 
-	public void setRutMed(int rutMed) {
+	public void setRutMed(String rutMed) {
 		this.rutMed = rutMed;
 	}
 	
 	
 
-    public Ficha(Long idFicha, int rutPac, Date fecha, int estado, int rutMed) {
+    public Ficha(Long idFicha, int rutPac, Date fecha, int estado, String rutMed) {
 		super();
 		this.idFicha = idFicha;
 		this.rutPac = rutPac;
