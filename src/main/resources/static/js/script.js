@@ -109,7 +109,8 @@ $(document).ready(function(){
                             var form_ficha = {
                                 'rutPac'   : $('#txtRutIngreso').val(),
                                 'fecha' : new Date(),
-                                'estado': 1  
+                                'estado': 1,
+                                'rutMed': $('#txtRutSession').val()
                             }
                             
                             $.ajax({
@@ -144,6 +145,7 @@ $(document).ready(function(){
                                         data: JSON.stringify(form_ingreso),
                                         success: function(){
                                             console.log('ingreso guardado exitosamente');
+                                            Alert('Paciente ingresado exitosamente');
                                             $('#txtNombreIngreso').val('');
                                             $('#txtApatIngreso').val('');
                                             $('#txtAmatIngreso').val('');
@@ -196,7 +198,8 @@ $(document).ready(function(){
                             var form_ficha = {
                                 'rutPac'   : $('#txtRutIngreso').val(),
                                 'fecha' : new Date(),
-                                'estado': 1  
+                                'estado': 1,
+                                'rutMed': $('#txtRutSession').val()
                             }
             
                             $.ajax({
@@ -232,6 +235,7 @@ $(document).ready(function(){
                                         data: JSON.stringify(form_ingreso),
                                         success: function(){
                                             console.log('ingreso guardado exitosamente');
+                                            alert('Paciente ingresado exitosamente!');
                                             $('#txtNombreIngreso').val('');
                                             $('#txtApatIngreso').val('');
                                             $('#txtAmatIngreso').val('');
