@@ -62,7 +62,8 @@ $(document).ready(function(){
                     $('#txtNombreIngreso').attr("disabled", false);
                     $('#txtApatIngreso').attr("disabled", false);
                     $('#txtAmatIngreso').attr("disabled", false);
-                    $('#hiddennac').attr("disabled", true);
+                    $('#hiddennac').hide();
+                    $('#txtFnacIngreso').show();
                 }
             });
 
@@ -174,6 +175,7 @@ $(document).ready(function(){
                                             $('#txtApatIngreso').attr("disabled", false);
                                             $('#txtAmatIngreso').attr("disabled", false);
                                             $('#hiddennac').hide();
+                                            $('#txtFnacIngreso').show();
                                         },
                                         error: function(){
                                             console.log('error al guardar ingreso');
@@ -269,6 +271,7 @@ $(document).ready(function(){
                                             $('#txtApatIngreso').attr("disabled", false);
                                             $('#txtAmatIngreso').attr("disabled", false);
                                             $('#hiddennac').hide();
+                                            $('#txtFnacIngreso').show();
                                         },
                                         error: function(){
                                             console.log('error al guardar ingreso');
