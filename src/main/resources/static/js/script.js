@@ -59,6 +59,10 @@ $(document).ready(function(){
                 },
                 error: function(){
                     console.log('paciente no existe pero el rut es valido');
+                    $('#txtNombreIngreso').attr("disabled", false);
+                    $('#txtApatIngreso').attr("disabled", false);
+                    $('#txtAmatIngreso').attr("disabled", false);
+                    $('#hiddennac').attr("disabled", true);
                 }
             });
 
@@ -145,7 +149,7 @@ $(document).ready(function(){
                                         data: JSON.stringify(form_ingreso),
                                         success: function(){
                                             console.log('ingreso guardado exitosamente');
-                                            Alert('Paciente ingresado exitosamente');
+                                            alert('Paciente ingresado exitosamente');
                                             $('#txtNombreIngreso').val('');
                                             $('#txtApatIngreso').val('');
                                             $('#txtAmatIngreso').val('');
@@ -165,6 +169,11 @@ $(document).ready(function(){
                                             $('#txtTrat2').val('');
                                             $('#txtTrat3').val('');
                                             $('#txtTrat4').val('');
+
+                                            $('#txtNombreIngreso').attr("disabled", false);
+                                            $('#txtApatIngreso').attr("disabled", false);
+                                            $('#txtAmatIngreso').attr("disabled", false);
+                                            $('#hiddennac').hide();
                                         },
                                         error: function(){
                                             console.log('error al guardar ingreso');
@@ -255,6 +264,11 @@ $(document).ready(function(){
                                             $('#txtTrat2').val('');
                                             $('#txtTrat3').val('');
                                             $('#txtTrat4').val('');
+
+                                            $('#txtNombreIngreso').attr("disabled", false);
+                                            $('#txtApatIngreso').attr("disabled", false);
+                                            $('#txtAmatIngreso').attr("disabled", false);
+                                            $('#hiddennac').hide();
                                         },
                                         error: function(){
                                             console.log('error al guardar ingreso');
