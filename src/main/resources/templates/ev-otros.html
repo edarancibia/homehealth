@@ -45,11 +45,10 @@
             type: 'get',
             url: base_url + 'evolucion-o/list/' + idficha,
             success: function(data){
-                $("#tabla-evOtros thead").append("<th>Ficha</th><th>Fecha</th><th>Evolución</th><th>Usuario</th>");
+                $("#tabla-evOtros thead").append("<th>Fecha</th><th>Evolución</th><th>Usuario</th>");
 				        $('#tabla-evOtros tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
-                        "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
                         "<td>"+data[i].usuario+"</td>"+

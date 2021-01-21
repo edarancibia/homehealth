@@ -51,12 +51,11 @@
             url: base_url + 'storage/files-list/'+idficha,
             success: function(data){
                 console.log(data+ ' rut: '+ $('#txtRut').val());
-                $("#tabla-files thead").append("<th>Fecha</th><th>Ficha</th><th>Nombre</th><th>Usuario</th>");
+                $("#tabla-files thead").append("<th>Fecha</th><th>Nombre</th><th>Usuario</th>");
 				$('#tabla-files tr').remove();
                 $.each(data, function(i, item){
 					$('<tr>').html(
                         "<td>"+data[i].fecha+"</td>" +
-                        "<td>"+data[i].idficha+"</td>"+
                         "<td><a target='_blank' href="+data[i].url+">"+data[i].descripcion+"</a></td>"+
                         "<td>"+data[i].usuario+"</td>"+
                          "</tr>").appendTo('#tabla-files');

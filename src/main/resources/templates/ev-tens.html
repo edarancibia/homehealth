@@ -50,11 +50,10 @@
             type: 'get',
             url: base_url + 'ev-tens/list/' + idficha,
             success: function(data){
-                $("#tabla-evTens thead").append("<th>Ficha</th><th>Fecha</th><th>Evolución</th><th>Usuario</th>");
+                $("#tabla-evTens thead").append("<th>Fecha</th><th>Evolución</th><th>Usuario</th>");
 				        $('#tabla-evTens tr').remove();
                 $.each(data, function(i, item){
 					        $('<tr>').html(
-                        "<td>"+data[i].id_ficha+"</a></td>"+
                         "<td>"+data[i].fecha+"</td>" +
                         "<td>"+data[i].descripcion+"</td>" +
                         "<td>"+data[i].usuario+"</td>"+

@@ -478,7 +478,6 @@ $(document).ready(function(){
                             $('#tabla-evMedica tr').remove();
                             $.each(data, function(i, item){
                                 $('<tr>').html(
-                                    "<td>"+data[i].id_ficha+"</td>" +
                                     "<td>"+data[i].fecha+"</td>" +
                                     "<td>"+data[i].descripcion+"</td>" +
                                     "<td>"+data[i].indicaciones+"</td>" +
@@ -527,7 +526,6 @@ $(document).ready(function(){
                                 $('#tabla-evEnfermeria tr').remove();
                                 $.each(data, function(i, item){
                                     $('<tr>').html(
-                                        "<td>"+data[i].id_ficha+"</td>" +
                                         "<td>"+data[i].fecha+"</td>" +
                                         "<td>"+data[i].descripcion+"</td>" +
                                         "<td>"+data[i].usuario+"</td>"+
@@ -575,7 +573,6 @@ $(document).ready(function(){
                                 $('#tabla-evKine tr').remove();
                                 $.each(data, function(i, item){
                                     $('<tr>').html(
-                                        "<td>"+data[i].id_ficha+"</td>" +
                                         "<td>"+data[i].fecha+"</td>" +
                                         "<td>"+data[i].descripcion+"</td>" +
                                         "<td>"+data[i].usuario+"</td>"+
@@ -623,7 +620,6 @@ $(document).ready(function(){
                                     $('#tabla-educacion tr').remove();
                                     $.each(data, function(i, item){
                                         $('<tr>').html(
-                                            "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
                                             "<td>"+data[i].usuario+"</td>"+
@@ -671,7 +667,6 @@ $(document).ready(function(){
                                     $('#tabla-evOtros tr').remove();
                                     $.each(data, function(i, item){
                                         $('<tr>').html(
-                                            "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
                                             "<td>"+data[i].usuario+"</td>"+
@@ -766,7 +761,6 @@ $(document).ready(function(){
                                     $('#tabla-proce tr').remove();
                                     $.each(data, function(i, item){
                                         $('<tr>').html(
-                                            "<td>"+data[i].id_ficha+"</td>" +
                                             "<td>"+data[i].fecha+"</td>" +
                                             "<td>"+data[i].descripcion+"</td>" +
                                             "<td>"+data[i].usuario+"</td>"+
@@ -863,7 +857,6 @@ $(document).ready(function(){
                                         $('#tabla-evTens tr').remove();
                                         $.each(data, function(i, item){
                                             $('<tr>').html(
-                                                "<td>"+data[i].id_ficha+"</td>" +
                                                 "<td>"+data[i].fecha+"</td>" +
                                                 "<td>"+data[i].descripcion+"</td>" +
                                                 "<td>"+data[i].usuario+"</td>"+
