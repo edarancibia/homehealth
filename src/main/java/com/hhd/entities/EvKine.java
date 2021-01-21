@@ -22,7 +22,7 @@ public class EvKine {
     private String descripcion;
 
     @Column(name = "rut_usu")
-    private int rutUsu;
+    private String rutUsu;
 
     public Long getIdEvolucionKine() {
         return idEvolucionKine;
@@ -36,7 +36,7 @@ public class EvKine {
         return descripcion;
     }
 
-    public int getRutUsu() {
+    public String getRutUsu() {
         return rutUsu;
     }
 
@@ -52,7 +52,7 @@ public class EvKine {
         this.descripcion = descripcion;
     }
 
-    public void setRutUsu(int rutUsu) {
+    public void setRutUsu(String rutUsu) {
         this.rutUsu = rutUsu;
     }
 
@@ -64,7 +64,7 @@ public class EvKine {
         this.idFicha = idFicha;
     }
 
-    public EvKine(Long idEvolucionKine, Long idFicha, Date fecha, String descripcion, int rutUsu) {
+    public EvKine(Long idEvolucionKine, Long idFicha, Date fecha, String descripcion, String rutUsu) {
         this.idEvolucionKine = idEvolucionKine;
         this.idFicha = idFicha;
         this.fecha = fecha;
