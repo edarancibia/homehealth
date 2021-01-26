@@ -26,6 +26,7 @@
         <div class="modal-body">
           <label class="col-xs-2 control-label labels-text">Evolución</label>
           <textarea id="txtEvolucionK" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
+          <button type="text" class="form-control" onclick='startRecording();'><i class="fas fa-microphone"></i></button>
         </div>
         <div class="modal-footer">
           <button type="button" id="btnSaveEvKine" class="btn btn-primary" data-dismiss="modal">Guardar</button>
@@ -62,5 +63,28 @@
             }
         });
       });
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.onresult = function(event) { 
+        var saidText = "";
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            saidText = event.results[i][0].transcript;
+          } else {
+            saidText += event.results[i][0].transcript;
+          }
+        }
+        // Update Textbox value
+        document.getElementById('txtEvolucionK').value = saidText;
+      
+        // Search Posts
+        searchPosts(saidText);
+      }
+
+      function startRecording(){
+        recognition.start();
+      }
+
   </script>
 </html>
