@@ -19,4 +19,6 @@ public interface EvKineRepository extends JpaRepository<EvKine, Long> {
      		+ "from ev_kine e, usuario u \r\n"
      		+ "where e.id_ficha = :idFicha and e.rut_usu = u.rutnum order by e.fecha  desc", nativeQuery = true)
      List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha);
+    
+    public abstract EvKine findByIdEvolucionKine(Long id);
 }

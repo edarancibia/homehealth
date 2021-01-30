@@ -554,13 +554,16 @@ $(document).ready(function(){
                     'descripcion': $('#txtEvolucionK').val(),
                     'rutUsu'     : $('#txtRutSession').val()
                 }
+
+                var postid = $('#postid').val();
     
                 $.ajax({
                     type: 'post',
-                    url: base_url + 'evolucion-k/add',
+                    url: base_url + 'evolucion-k/autosave',
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-                    data: JSON.stringify(form_evolucion_k),
+                    //data: JSON.stringify(form_evolucion_k),
+                    data: JSON.stringify({idEvolucionKine: postid,idFicha:$('#txtHiddenFicha').val(),fecha:new Date(),descripcion:$('#txtEvolucionK').val(),rutUsu:$('#txtRutSession').val()}),
                     success: function(){
                         $('#modalEvKine').modal('hide');
                         $('body').removeClass('modal-open');

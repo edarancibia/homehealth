@@ -30,4 +30,9 @@ public class EvKIneServiceImpl implements EvKineService {
 	public List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha) {
 		return repository.findEvolucionByIdFicha(idFicha);
 	}
+
+	@Override
+	public EvKine findByIdEvolucionKine(Long id) {
+		return repository.findByIdEvolucionKine(id);
+	}
 }

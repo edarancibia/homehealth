@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -39,6 +42,7 @@ import com.hhd.entities.EvKine;
 import com.hhd.impl.AtMedicaServiceImpl;
 import com.hhd.impl.EvKIneServiceImpl;
 import com.hhd.util.PdfGenaratorUtil;
+
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -55,6 +59,8 @@ public class EvKineController {
 	@Autowired
 	public AtMedicaServiceImpl atMedService;
 	
+	private static final Log LOG = LogFactory.getLog(EvKineController.class);
+	
 	@GetMapping("/{idficha}")
 	public ModelAndView index(@PathVariable int idficha, Model model,HttpSession session) {
 		ModelAndView mv = new ModelAndView("ev-kine");
@@ -64,6 +70,28 @@ public class EvKineController {
         }else {
         	return mv;
         }
+	}
+	
+	@PostMapping("/autosave")
+	public ResponseEntity<?> autosave(@RequestBody EvKine evolucion){
+		LOG.info("datos:" + evolucion);
+		Long id = evolucion.getIdEvolucionKine();
+		LOG.info("id: "+ id);
+		EvKine evBd = evKineService.findByIdEvolucionKine(id);
+		
+		if(evBd != null) {
+			//update
+			LOG.info("AUTOSAVE UPDATE");
+			EvKine evBd2 = evKineService.findByIdEvolucionKine(id);
+			evBd2.setDescripcion(evolucion.getDescripcion());
+			evKineService.addEvKine(evBd2);
+			return new ResponseEntity<EvKine>(evBd2,HttpStatus.OK);
+		}else {
+			//insert
+			LOG.info("AUTOSAVE INSERT");
+			EvKine evNew = evKineService.addEvKine(evolucion);
+			return new ResponseEntity<EvKine>(evNew,HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping("/add")

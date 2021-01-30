@@ -10,4 +10,5 @@ public interface EvKineService {
     public abstract EvKine addEvKine(EvKine evKine);
     public abstract EvKine findEvKineByIdFicha(Long idficha);
     List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha);
+    public abstract EvKine findByIdEvolucionKine(Long id);
 }

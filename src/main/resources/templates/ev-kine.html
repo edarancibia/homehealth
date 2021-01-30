@@ -14,7 +14,7 @@
 </div>
 
 </body>
-<div class="modal fade" id="modalEvKine" role="dialog">
+<div class="modal fade" id="modalEvKine" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" >
       <div class="modal-content">
         <div class="modal-header">
@@ -26,6 +26,7 @@
         <div class="modal-body">
           <label class="col-xs-2 control-label labels-text">Evolución</label>
           <textarea id="txtEvolucionK" cols="30" rows="5" class="form-control input-text" style="height: 50%;"></textarea>
+          <input type='hidden' id='postid' value='0' >
           <button type="text" class="form-control" onclick='startRecording();'><i class="fas fa-microphone"></i></button>
         </div>
         <div class="modal-footer">
@@ -62,29 +63,60 @@
                 });
             }
         });
+
+        var timer;
+        var timeout = 5000; // Timout duration
+        $('#txtEvolucionK').keyup(function(){
+          
+          if(timer) {
+            clearTimeout(timer);
+          }
+          
+          timer = setTimeout(saveData, timeout); 
+          
+        });
+          
+        $('#submit').click(function(){
+          saveData();
+        });
       });
 
-      var recognition = new webkitSpeechRecognition();
+      // Save data
+    function saveData(){
+    
+      var base_url = 'https://hhosorno.herokuapp.com/';
+      var postid = $('#postid').val();
+      var content = $('#txtEvolucionK').val().trim();
 
-      recognition.onresult = function(event) { 
-        var saidText = "";
-        for (var i = event.resultIndex; i < event.results.length; i++) {
-          if (event.results[i].isFinal) {
-            saidText = event.results[i][0].transcript;
-          } else {
-            saidText += event.results[i][0].transcript;
-          }
-        }
-        // Update Textbox value
-        document.getElementById('txtEvolucionK').value = saidText;
-      
-        // Search Posts
-        searchPosts(saidText);
+      var form_evolucion_k = {
+          'postid'     : postid,
+          'idFicha'    : $('#txtHiddenFicha').val(),
+          'fecha'      : new Date(),
+          'descripcion': $('#txtEvolucionK').val(),
+          'rutUsu'     : $('#txtRutSession').val()
       }
 
-      function startRecording(){
-        recognition.start();
-      }
+      if(content != ''){
+        // AJAX request
+        $.ajax({
+          type: 'post',
+          url: base_url+'evolucion-k/autosave',
+          contentType: 'application/json; charset=utf-8',
+          dataType: 'json',
+          data: JSON.stringify({idEvolucionKine: postid,idFicha:$('#txtHiddenFicha').val(),fecha:new Date(),descripcion:$('#txtEvolucionK').val(),rutUsu:$('#txtRutSession').val()}),
+          //data: {idEvolucionKine: postid,idFicha:$('#txtHiddenFicha').val(),fecha:new Date(),descripcion:$('#txtEvolucionK').val(),rutUsu:$('#txtRutSession').val()},
+          success: function(response){
+            console.log('datos: '+JSON.stringify(response));
+            if (response.hasOwnProperty("idEvolucionKine")){
+                console.log(response.idEvolucionKine);
+                $('#postid').val(response.idEvolucionKine);             
+            }
+          } 
+        });
+      } 
+      //console.log(content);
+    }
+
 
   </script>
 </html>
