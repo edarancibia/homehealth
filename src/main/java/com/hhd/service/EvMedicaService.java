@@ -9,4 +9,5 @@ public interface EvMedicaService {
 
 	public abstract EvMedica addEvMedica(EvMedica evolucion);
     List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha);
+    public abstract EvMedica findByIdEvMedica(Long id);
 }

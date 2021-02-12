@@ -37,6 +37,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hhd.entities.EpicrisisMedica;
 import com.hhd.entities.EvEnfermeria;
+import com.hhd.entities.EvKine;
 import com.hhd.entities.EvMedica;
 import com.hhd.impl.AtMedicaServiceImpl;
 import com.hhd.impl.EvEnfermeriaServiceImpl;
@@ -66,6 +67,28 @@ public class EvEnfermeriaController {
         }else {
         	return mv;
         }
+	}
+	
+	@PostMapping("/autosave")
+	public ResponseEntity<?> autosave(@RequestBody EvEnfermeria evolucion){
+		//LOG.info("datos:" + evolucion);
+		Long id = evolucion.getIdEvolucionEnf();
+		//LOG.info("id: "+ id);
+		EvEnfermeria evBd = evEnfService.findByIdEvolucionEnf(id);
+		
+		if(evBd != null) {
+			//update
+			//LOG.info("AUTOSAVE UPDATE");
+			EvEnfermeria evBd2 = evEnfService.findByIdEvolucionEnf(id);
+			evBd2.setDescripcion(evolucion.getDescripcion());
+			evEnfService.addEvEnfermeria(evBd2);
+			return new ResponseEntity<EvEnfermeria>(evBd2,HttpStatus.OK);
+		}else {
+			//insert
+			//LOG.info("AUTOSAVE INSERT");
+			EvEnfermeria evNew = evEnfService.addEvEnfermeria(evolucion);
+			return new ResponseEntity<EvEnfermeria>(evNew,HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping("/add")

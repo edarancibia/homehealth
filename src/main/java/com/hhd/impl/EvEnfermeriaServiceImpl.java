@@ -26,5 +26,10 @@ public class EvEnfermeriaServiceImpl implements EvEnfermeriaService {
 		return repository.findEvolucionByIdFicha(idFicha);
 	}
 
+	@Override
+	public EvEnfermeria findByIdEvolucionEnf(Long id) {
+		return repository.findByIdEvolucionEnf(id);
+	}
+
 	
 }

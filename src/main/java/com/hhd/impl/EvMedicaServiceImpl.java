@@ -25,6 +25,10 @@ public class EvMedicaServiceImpl implements EvMedicaService {
 	public List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha) {
 		return repository.findEvolucionByIdFicha(idFicha);
 	}
-	
+
+	@Override
+	public EvMedica findByIdEvMedica(Long id) {
+		return repository.findByIdEvMedica(id);
+	}
 	
 }

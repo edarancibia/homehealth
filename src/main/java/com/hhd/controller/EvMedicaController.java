@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hhd.entities.EvEnfermeria;
 import com.hhd.entities.EvMedica;
 import com.hhd.entities.SignosVitales;
 import com.hhd.impl.AtMedicaServiceImpl;
@@ -65,6 +66,28 @@ public class EvMedicaController {
         }else {
         	return mv;
         }
+	}
+	
+	@PostMapping("/autosave")
+	public ResponseEntity<?> autosave(@RequestBody EvMedica evolucion){
+		//LOG.info("datos:" + evolucion);
+		Long id = evolucion.getIdEvMedica();
+		//LOG.info("id: "+ id);
+		EvMedica evBd = evMedicaService.findByIdEvMedica(id);
+		
+		if(evBd != null) {
+			//update
+			//LOG.info("AUTOSAVE UPDATE");
+			EvMedica evBd2 = evMedicaService.findByIdEvMedica(id);
+			evBd2.setDescripcion(evolucion.getDescripcion());
+			evMedicaService.addEvMedica(evBd2);
+			return new ResponseEntity<EvMedica>(evBd2,HttpStatus.OK);
+		}else {
+			//insert
+			//LOG.info("AUTOSAVE INSERT");
+			EvMedica evNew = evMedicaService.addEvMedica(evolucion);
+			return new ResponseEntity<EvMedica>(evNew,HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping("/add")

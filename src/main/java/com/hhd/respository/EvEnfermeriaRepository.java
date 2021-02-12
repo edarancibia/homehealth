@@ -17,4 +17,6 @@ public interface EvEnfermeriaRepository extends JpaRepository<EvEnfermeria, Long
      		+ "from ev_enfermeria e, usuario u \r\n"
      		+ "where e.id_ficha = :idFicha and e.rut_usu = u.rutnum order by e.fecha  desc", nativeQuery = true)
      List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha);
+    
+    public abstract EvEnfermeria findByIdEvolucionEnf(Long id);
 }

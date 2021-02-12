@@ -507,13 +507,15 @@ $(document).ready(function(){
                     'descripcion': $('#txtEvolucionE').val(),
                     'rutUsu'     : $('#txtRutSession').val()
                 }
+
+                var postid = $('#postid').val();
     
                 $.ajax({
                     type: 'post',
-                    url: base_url + 'evolucion-e/add',
+                    url: base_url + 'evolucion-e/autosave',
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-                    data: JSON.stringify(form_evolucion_e),
+                    data: JSON.stringify({idEvolucionEnf: postid,idFicha:$('#txtHiddenFicha').val(),fecha:new Date(),descripcion:$('#txtEvolucionE').val(),rutUsu:$('#txtRutSession').val()}),
                     success: function(){
                         $('#modalEvEnfermeria').modal('hide');
                         $('body').removeClass('modal-open');
@@ -893,11 +895,10 @@ $(document).ready(function(){
                         type: 'get',
                         url: base_url + 'paciente/fichas/' + rut,
                         success: function(data){
-                            $("#tabla-fichas thead").append("<th>Ficha</th><th>Fecha</th>");
+                            $("#tabla-fichas thead").append("<th>Fecha</th>");
                             $('#tabla-fichas tr').remove();
                             $.each(data, function(i, item){
                                 $('<tr>').html(
-                                    "<td>"+data[i].idficha+"</td>" +
                                     "<td><a target='blank' href="+base_url+'menu/'+data[i].idficha+">"+data[i].fecha+"</a></td>" +
                                     "</tr>").appendTo('#tabla-fichas');
                             });

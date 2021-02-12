@@ -18,4 +18,6 @@ public interface EvMedicaRepository extends JpaRepository<EvMedica, Long> {
      		+ "from ev_medica e, usuario u \r\n"
      		+ "where e.id_ficha = :idFicha and e.rut_usu = u.rutnum order by e.fecha  desc", nativeQuery = true)
      List<Map<String, Object>> findEvolucionByIdFicha(Long idFicha);
+    
+    public abstract EvMedica findByIdEvMedica(Long id);
 }

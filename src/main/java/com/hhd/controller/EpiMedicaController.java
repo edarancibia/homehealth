@@ -38,6 +38,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hhd.entities.AtencionMedica;
 import com.hhd.entities.EpicrisisMedica;
+import com.hhd.entities.EvEnfermeria;
+import com.hhd.entities.EvMedica;
 import com.hhd.entities.Ficha;
 import com.hhd.entities.IndicacionesAlta;
 import com.hhd.entities.Ingreso;

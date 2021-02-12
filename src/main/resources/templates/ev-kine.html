@@ -65,7 +65,7 @@
         });
 
         var timer;
-        var timeout = 5000; // Timout duration
+        var timeout = 3000; // Timout duration
         $('#txtEvolucionK').keyup(function(){
           
           if(timer) {
@@ -80,6 +80,30 @@
           saveData();
         });
       });
+
+      //voice
+
+      var recognition = new webkitSpeechRecognition();
+
+      recognition.onresult = function(event) { 
+        var saidText = "";
+        for (var i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            saidText = event.results[i][0].transcript;
+          } else {
+            saidText += event.results[i][0].transcript;
+          }
+        }
+        // Update Textbox value
+        document.getElementById('txtEvolucionK').value = saidText;
+
+        // Search Posts
+        searchPosts(saidText);
+      }
+
+      function startRecording(){
+        recognition.start();
+      }
 
       // Save data
     function saveData(){
