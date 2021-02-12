@@ -64,29 +64,6 @@
             }
         });
 
-        //voice
-        var recognition = new webkitSpeechRecognition();
-
-        recognition.onresult = function(event) { 
-          var saidText = "";
-          for (var i = event.resultIndex; i < event.results.length; i++) {
-            if (event.results[i].isFinal) {
-              saidText = event.results[i][0].transcript;
-            } else {
-              saidText += event.results[i][0].transcript;
-            }
-          }
-          // Update Textbox value
-          document.getElementById('txtEvolucionE').value = saidText;
-
-          // Search Posts
-          searchPosts(saidText);
-        }
-
-        function startRecording(){
-          recognition.start();
-        }
-
         var timer;
         var timeout = 3000; // Timout duration
         $('#txtEvolucionE').keyup(function(){
@@ -140,6 +117,29 @@
     } 
     //console.log(content);
   }
+
+          //voice
+          var recognition = new webkitSpeechRecognition();
+
+          recognition.onresult = function(event) { 
+            var saidText = "";
+            for (var i = event.resultIndex; i < event.results.length; i++) {
+              if (event.results[i].isFinal) {
+                saidText = event.results[i][0].transcript;
+              } else {
+                saidText += event.results[i][0].transcript;
+              }
+            }
+            // Update Textbox value
+            document.getElementById('txtEvolucionE').value = saidText;
+
+            // Search Posts
+            searchPosts(saidText);
+          }
+
+          function startRecording(){
+            recognition.start();
+          }
 
   </script>
 </html>
