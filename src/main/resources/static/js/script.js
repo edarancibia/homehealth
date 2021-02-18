@@ -115,7 +115,8 @@ $(document).ready(function(){
                                 'rutPac'   : $('#txtRutIngreso').val(),
                                 'fecha' : new Date(),
                                 'estado': 1,
-                                'rutMed': $('#txtRutSession').val()
+                                'rutMed': $('#txtRutSession').val(),
+                                'edad'  : $('#txtedadingreso').val()
                             }
                             
                             $.ajax({
@@ -170,6 +171,7 @@ $(document).ready(function(){
                                             $('#txtTrat2').val('');
                                             $('#txtTrat3').val('');
                                             $('#txtTrat4').val('');
+                                            $('#txtedadingreso').val('');
 
                                             $('#txtNombreIngreso').attr("disabled", false);
                                             $('#txtApatIngreso').attr("disabled", false);
@@ -210,7 +212,8 @@ $(document).ready(function(){
                                 'rutPac'   : $('#txtRutIngreso').val(),
                                 'fecha' : new Date(),
                                 'estado': 1,
-                                'rutMed': $('#txtRutSession').val()
+                                'rutMed': $('#txtRutSession').val(),
+                                'edad'  : $('#txtedadingreso').val()
                             }
             
                             $.ajax({
@@ -266,6 +269,7 @@ $(document).ready(function(){
                                             $('#txtTrat2').val('');
                                             $('#txtTrat3').val('');
                                             $('#txtTrat4').val('');
+                                            $('#txtedadingreso').val('');
 
                                             $('#txtNombreIngreso').attr("disabled", false);
                                             $('#txtApatIngreso').attr("disabled", false);

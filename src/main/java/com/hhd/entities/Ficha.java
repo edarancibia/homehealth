@@ -23,6 +23,9 @@ public class Ficha {
     
     @Column(name = "rut_med")
     private String rutMed;
+    
+    @Column(name = "edad")
+    private String edad;
 
     public Long getIdFicha() {
         return idFicha;
@@ -64,16 +67,22 @@ public class Ficha {
 	public void setRutMed(String rutMed) {
 		this.rutMed = rutMed;
 	}
-	
-	
 
-    public Ficha(Long idFicha, int rutPac, Date fecha, int estado, String rutMed) {
-		super();
+    public String getEdad() {
+		return edad;
+	}
+
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+	
+	public Ficha(Long idFicha, int rutPac, Date fecha, int estado, String rutMed, String edad) {
 		this.idFicha = idFicha;
 		this.rutPac = rutPac;
 		this.fecha = fecha;
 		this.estado = estado;
 		this.rutMed = rutMed;
+		this.edad = edad;
 	}
 
 	public Ficha() {
